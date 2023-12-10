@@ -10,7 +10,7 @@ Choose one of the following installation methods:
 On macOS (or Linux) you can install it using [Homebrew](https://brew.sh).
 
 ```shell
-brew install dnscontrol
+brew install stackexchange/tap/dnscontrol
 ```
 
 ### MacPorts
