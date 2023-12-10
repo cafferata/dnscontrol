@@ -24,6 +24,22 @@ before:
     - go fmt ./...
     - go mod tidy
     - go generate ./...
+brews:
+  - name: "dnscontrol"
+    repository:
+      owner: stackexchange
+      name: homebrew-tap
+      token: "{{ .Env.GITHUB_PERSONAL_AUTH_TOKEN }}"
+      branch:
+        master
+    folder: Formula
+    homepage: "https://docs.dnscontrol.org/"
+    description: "DNSControl: Infrastructure as Code for DNS Zones"
+    license: "MIT"
+    test: |
+      system "#{bin}/dnscontrol version"
+    install: |
+      bin.install "dnscontrol"
 changelog:
   sort: asc
   use: github
