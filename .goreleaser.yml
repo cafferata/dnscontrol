@@ -1,6 +1,5 @@
 builds:
-  -
-    id: build
+  - id: build
     env:
       - CGO_ENABLED=0
       - GO111MODULE=on
@@ -9,14 +8,14 @@ builds:
       - windows
       - darwin
       - freebsd
-# List of combinations of GOOS + GOARCH + GOARM to ignore.
+    # List of combinations of GOOS + GOARCH + GOARM to ignore.
     ignore:
       - goos: linux
-        goarch: "386"
+        goarch: '386'
       - goos: windows
-        goarch: "386"
+        goarch: '386'
       - goos: freebsd
-        goarch: "386"
+        goarch: '386'
     ldflags:
       - -linkmode=internal -s -w
       - -X main.version={{ .Version }}
@@ -36,7 +35,7 @@ changelog:
       regexp: "(?i)^.*(major|new provider|feature)[(\\w)]*:+.*$"
       order: 1
     - title: 'Provider-specific changes:'
-      regexp: "(?i)((akamaiedge|autodns|axfrd|azure|azure_private_dns|bind|cloudflare|cloudflareapi_old|cloudns|cscglobal|desec|digitalocean|dnsimple|dnsmadeeasy|doh|domainnameshop|easyname|exoscale|gandi|gcloud|gcore|hedns|hetzner|hexonet|hostingde|inwx|linode|loopia|luadns|msdns|mythicbeasts|namecheap|namedotcom|netcup|netlify|ns1|opensrs|oracle|ovh|packetframe|porkbun|powerdns|route53|rwth|softlayer|transip|vultr).*:)+.*"
+      regexp: '(?i)((akamaiedge|autodns|axfrd|azure|azure_private_dns|bind|cloudflare|cloudflareapi_old|cloudns|cscglobal|desec|digitalocean|dnsimple|dnsmadeeasy|doh|domainnameshop|easyname|exoscale|gandi|gcloud|gcore|hedns|hetzner|hexonet|hostingde|inwx|linode|loopia|luadns|msdns|mythicbeasts|namecheap|namedotcom|netcup|netlify|ns1|opensrs|oracle|ovh|packetframe|porkbun|powerdns|route53|rwth|softlayer|transip|vultr).*:)+.*'
       order: 2
     - title: 'Documentation:'
       regexp: "(?i)^.*(docs)[(\\w)]*:+.*$"
@@ -54,16 +53,15 @@ changelog:
       order: 10
   filters:
     exclude:
-    - '^test:'
-    - Merge pull request
-    - Merge branch
+      - '^test:'
+      - Merge pull request
+      - Merge branch
 archives:
   - format_overrides:
-    - goos: windows
-      format: zip
+      - goos: windows
+        format: zip
 universal_binaries:
-  -
-    replace: true
+  - replace: true
     id: build
 
 nfpms:
@@ -74,72 +72,72 @@ nfpms:
       {{- if eq .Arch "386" }}i386
       {{- else if eq .Arch "amd64" }}x86_64
       {{- else }}{{ .Arch }}{{ end }}
-    homepage:  https://docs.dnscontrol.org/
-    description: "DNSControl: Infrastructure as Code for DNS Zones"
+    homepage: https://docs.dnscontrol.org/
+    description: 'DNSControl: Infrastructure as Code for DNS Zones'
     maintainer: 'Tom Limoncelli <tlimoncelli@stackoverflow.com>'
     license: MIT
     formats:
-    - rpm
+      - rpm
   - id: packages_deb
     file_name_template: >-
       {{ .ProjectName }}-
       {{- .Version }}.
       {{- if eq .Arch "386" }}i386
       {{- else }}{{ .Arch }}{{ end }}
-    homepage:  https://docs.dnscontrol.org/
-    description: "DNSControl: Infrastructure as Code for DNS Zones"
+    homepage: https://docs.dnscontrol.org/
+    description: 'DNSControl: Infrastructure as Code for DNS Zones'
     maintainer: 'Tom Limoncelli <tlimoncelli@stackoverflow.com>'
     license: MIT
     formats:
-    - deb
+      - deb
 dockers:
   - image_templates:
-    - &amd_image "stackexchange/{{.ProjectName}}:{{ .Version }}-amd64"
-    - &amd_image_ghcr "ghcr.io/stackexchange/{{.ProjectName}}:{{ .Version }}-amd64"
+      - &amd_image 'stackexchange/{{.ProjectName}}:{{ .Version }}-amd64'
+      - &amd_image_ghcr 'ghcr.io/stackexchange/{{.ProjectName}}:{{ .Version }}-amd64'
     goos: linux
     goarch: amd64
     use: buildx
     ids:
-    - build
+      - build
     build_flag_templates:
-    - "--pull"
-    - "--platform=linux/amd64"
-    - "--label=org.opencontainers.image.created={{ .Date }}"
-    - "--label=org.opencontainers.image.name={{ .ProjectName }}"
-    - "--label=org.opencontainers.image.revision={{ .FullCommit }}"
-    - "--label=org.opencontainers.image.version={{ .Version }}"
-    - "--label=org.opencontainers.image.source={{ .GitURL }}"
+      - '--pull'
+      - '--platform=linux/amd64'
+      - '--label=org.opencontainers.image.created={{ .Date }}'
+      - '--label=org.opencontainers.image.name={{ .ProjectName }}'
+      - '--label=org.opencontainers.image.revision={{ .FullCommit }}'
+      - '--label=org.opencontainers.image.version={{ .Version }}'
+      - '--label=org.opencontainers.image.source={{ .GitURL }}'
   - image_templates:
-    - &arm_image "stackexchange/{{.ProjectName}}:{{ .Version }}-arm64"
-    - &arm_image_ghcr "ghcr.io/stackexchange/{{.ProjectName}}:{{ .Version }}-arm64"
+      - &arm_image 'stackexchange/{{.ProjectName}}:{{ .Version }}-arm64'
+      - &arm_image_ghcr 'ghcr.io/stackexchange/{{.ProjectName}}:{{ .Version }}-arm64'
     goos: linux
     goarch: arm64
     use: buildx
     ids:
-    - build
+      - build
     build_flag_templates:
-    - "--pull"
-    - "--platform=linux/arm64"
-    - "--label=org.opencontainers.image.created={{ .Date }}"
-    - "--label=org.opencontainers.image.name={{ .ProjectName }}"
-    - "--label=org.opencontainers.image.revision={{ .FullCommit }}"
-    - "--label=org.opencontainers.image.version={{ .Version }}"
-    - "--label=org.opencontainers.image.source={{ .GitURL }}"
+      - '--pull'
+      - '--platform=linux/arm64'
+      - '--label=org.opencontainers.image.created={{ .Date }}'
+      - '--label=org.opencontainers.image.name={{ .ProjectName }}'
+      - '--label=org.opencontainers.image.revision={{ .FullCommit }}'
+      - '--label=org.opencontainers.image.version={{ .Version }}'
+      - '--label=org.opencontainers.image.source={{ .GitURL }}'
 docker_manifests:
-  - name_template: "stackexchange/{{.ProjectName}}:{{ .Version }}"
+  - name_template: 'stackexchange/{{.ProjectName}}:{{ .Version }}'
     image_templates:
       - *amd_image
       - *arm_image
-  - name_template: "ghcr.io/stackexchange/{{.ProjectName}}:{{ .Version }}"
+  - name_template: 'ghcr.io/stackexchange/{{.ProjectName}}:{{ .Version }}'
     image_templates:
       - *amd_image_ghcr
       - *arm_image_ghcr
-  - name_template: "stackexchange/{{.ProjectName}}:latest"
+  - name_template: 'stackexchange/{{.ProjectName}}:latest'
     skip_push: auto
     image_templates:
       - *amd_image
       - *arm_image
-  - name_template: "ghcr.io/stackexchange/{{.ProjectName}}:latest"
+  - name_template: 'ghcr.io/stackexchange/{{.ProjectName}}:latest'
     skip_push: auto
     image_templates:
       - *amd_image_ghcr
@@ -147,7 +145,7 @@ docker_manifests:
 checksum:
   name_template: 'checksums.txt'
 snapshot:
-  name_template: "{{ incpatch .Version }}-next"
+  name_template: '{{ incpatch .Version }}-next'
 
 release:
   draft: true
