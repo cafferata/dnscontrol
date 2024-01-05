@@ -150,7 +150,6 @@
 
 * [creds.json](creds-json.md)
 * [check-creds](check-creds.md)
-* [get-certs](get-certs.md)
 * [get-zones](get-zones.md)
 
 ## Advanced features
