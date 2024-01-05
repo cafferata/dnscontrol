@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - 'tlim_testpr'
+      - 'remove-get-certs'
   pull_request:
   workflow_dispatch:
 
