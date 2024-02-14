@@ -28,3 +28,4 @@ stack.sh
 types-dnscontrol.d.ts
 
 dist/
+/.cypress/node_modules/
