@@ -84,9 +84,9 @@ var returnTypes = map[string]string{
 }
 
 var categories = map[string]string{
-	"domain": "domain-modifiers",
-	"global": "top-level-functions",
-	"record": "record-modifiers",
+	"domain-modifiers":    "domain-modifiers",
+	"top-level-functions": "top-level-functions",
+	"record-modifiers":    "record-modifiers",
 }
 
 var providerNames = map[string]string{
@@ -101,7 +101,7 @@ var providerNames = map[string]string{
 func generateFunctionTypes() (string, error) {
 	funcs := []Function{}
 
-	srcRoot := join("documentation", "functions")
+	srcRoot := join("documentation", "language-reference")
 	types, err := os.ReadDir(srcRoot)
 	if err != nil {
 		return "", err
