@@ -10,12 +10,12 @@ TL;DR version: [`docs`](https://github.com/DNSControl/dnscontrol/tree/main/docs)
    * The main website
    * Source code: [`docs`](https://github.com/DNSControl/dnscontrol/tree/main/docs)
    * Mostly "marketing" for the project.
-   * Rarely changes.  Updated via GitHub "pages" feature.
+   * Rarely changes. Updated via GitHub "pages" feature.
 2. <https://docs.dnscontrol.org/>
    * Project documentation
    * Source code: [`documentation`](https://github.com/DNSControl/dnscontrol/tree/main/documentation)
    * Users and developer documentation
-   * Changes frequently.  Updated via [GitBook](https://www.gitbook.com/)
+   * Changes frequently. Updated via [GitBook](https://www.gitbook.com/)
 
 **The directory structure**
 
@@ -81,7 +81,7 @@ Include a blank line between paragraphs.
 
 Leave exactly one blank line before and after a heading.
 
-JavaScript code should use double quotes (`"`) for strings, not single quotes (`'`).  They are equivalent but consistency is good.
+JavaScript code should use double quotes (`"`) for strings, not single quotes (`'`). They are equivalent but consistency is good.
 
 ### Headings
 
@@ -185,7 +185,7 @@ This is a second <mark style="color:white;background-color:green;">line</mark>
 
 #### Mentioning language features
 
-Not every mention to A, CNAME, or function needs to be a link to the manual for that record type. However, the first mention on a page should always be a link.  Others are at the authors digression.
+Not every mention to A, CNAME, or function needs to be a link to the manual for that record type. However, the first mention on a page should always be a link. Others are at the authors digression.
 
 ```markdown
 The [`PTR`](../language-reference/domain-modifiers/PTR.md) feature is helpful in LANs.
@@ -234,4 +234,4 @@ Please capitalize these terms as you see them here:
 
 Please spellcheck documents before submitting a PR.
 
-Don't be surprised if Tom rewrites your text.  He often does that to keep the documentation consistent and make it more approachable by new users.  It's not [because he has a big ego](https://www.amazon.com/stores/author/B004J0QIVM). Well, not usually.
+Don't be surprised if Tom rewrites your text. He often does that to keep the documentation consistent and make it more approachable by new users. It's not [because he has a big ego](https://www.amazon.com/stores/author/B004J0QIVM). Well, not usually.

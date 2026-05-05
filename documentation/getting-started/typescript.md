@@ -18,7 +18,7 @@ To set up TypeScript support in Visual Studio Code, follow these steps:
 dnscontrol write-types
 ```
 
-This file has all the information your editor or IDE needs.  It must be in the same directory as the `dnsconfig.js` file you are editing.
+This file has all the information your editor or IDE needs. It must be in the same directory as the `dnsconfig.js` file you are editing.
 
 {% hint style="info" %}
 **NOTE**: Re-run the `dnscontrol write-types` command any time you upgrade

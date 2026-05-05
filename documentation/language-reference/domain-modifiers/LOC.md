@@ -72,7 +72,7 @@ dig loc <uk-postcode>.find.me.uk
 There are some behaviours that you should be aware of, however:
 
 > If omitted, minutes and seconds default to zero, size defaults to 1m,
-   horizontal precision defaults to 10000m, and vertical precision defaults to 10m.  These defaults are chosen to represent typical ZIP/postal code area sizes, since it is often easy to find approximate geographical location by ZIP/postal code.
+   horizontal precision defaults to 10000m, and vertical precision defaults to 10m. These defaults are chosen to represent typical ZIP/postal code area sizes, since it is often easy to find approximate geographical location by ZIP/postal code.
 
 Alas, the world does not revolve around US ZIP codes, but here we are. Internally, the LOC record type will supply defaults where values were absent on DNS import. One must supply the `LOC()` js helper all parameters. If that seems like too much work, see also helper functions:
 

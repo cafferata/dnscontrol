@@ -2,7 +2,7 @@
 
 This is a stand-alone utility to help verify entries in `creds.json`.
 
-The command does a trivial operation to verify credentials.  If
+The command does a trivial operation to verify credentials. If
 successful, a list of zones will be output (which may be an empty list). If the credentials or other problems prevent this operation from executing, the exit code will be non-zero and hopefully verbose error messages will be output.
 
 ```text
@@ -18,7 +18,7 @@ ARGUMENTS:
    provider: The name of the provider (second parameter to NewDnsProvider() in dnsconfig.js)
 ```
 
-Starting in [v3.16](../release/v316.md), "provider" is optional.  If it is omitted (or the placeholder value `-` is used), the `TYPE` specified in `creds.json` will be used instead. A warning will be displayed with advice on how to remain compatible with v4.0.
+Starting in [v3.16](../release/v316.md), "provider" is optional. If it is omitted (or the placeholder value `-` is used), the `TYPE` specified in `creds.json` will be used instead. A warning will be displayed with advice on how to remain compatible with v4.0.
 
 Starting in v4.0, the "provider" argument is expected to go away.
 

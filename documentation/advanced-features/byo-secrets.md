@@ -15,17 +15,17 @@ The instructions in this document will enable automated tests to run in these si
 
 GitHub Actions has a secure [secrets storage system](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets). Those secrets are available to GitHub Actions and are required for the integration tests to communicate with the various DNS providers that DNSControl supports.
 
-For security reasons, those secrets are unavailable if the PR comes from outside the project (a forked repo).  This is a good thing.  If it didn't work that way, a third-party could write a PR that leaks the secrets without the owners of the project knowing.
+For security reasons, those secrets are unavailable if the PR comes from outside the project (a forked repo). This is a good thing. If it didn't work that way, a third-party could write a PR that leaks the secrets without the owners of the project knowing.
 
 The docs (and many blog posts) describe this as forked repos don't have access to secrets, and instead receive null strings. That's not actually what's happening.
 
-Actually what happens is the secrets come from the forked repo.  Or, more precisely, the secrets offered to a PR come from the repo that the PR came from.  A PR from DNSControl's owners gets secrets from [github.com/DNSControl/dnscontrol's secret store](https://github.com/DNSControl/dnscontrol/settings/secrets/actions) but a PR from a fork, such as [https://github.com/TomOnTime/dnscontrol](https://github.com/TomOnTime/dnscontrol) gets its secrets from TomOnTime's secrets.
+Actually what happens is the secrets come from the forked repo. Or, more precisely, the secrets offered to a PR come from the repo that the PR came from. A PR from DNSControl's owners gets secrets from [github.com/DNSControl/dnscontrol's secret store](https://github.com/DNSControl/dnscontrol/settings/secrets/actions) but a PR from a fork, such as [https://github.com/TomOnTime/dnscontrol](https://github.com/TomOnTime/dnscontrol) gets its secrets from TomOnTime's secrets.
 
 Our automated integration tests leverages this info to have tests only run if they have access to the secrets they will need.
 
 # Which providers are selected for testing?
 
-Tests are executed if the env variable`*_DOMAIN` exists where `*` is the name of the provider.  If the value is empty or unset, the test is skipped. For example, if a provider is called `FANCYDNS`, there must be a variable called `FANCYDNS_DOMAIN`.
+Tests are executed if the env variable`*_DOMAIN` exists where `*` is the name of the provider. If the value is empty or unset, the test is skipped. For example, if a provider is called `FANCYDNS`, there must be a variable called `FANCYDNS_DOMAIN`.
 
 # Bring your own secrets
 
@@ -75,7 +75,7 @@ For example, the entry for BIND looks like:
 
 3. Add your providers other ENV variables:
 
-Every provider requires different variables set to perform the integration tests.  The list of such variables is in `integrationTest/profiles.json`.
+Every provider requires different variables set to perform the integration tests. The list of such variables is in `integrationTest/profiles.json`.
 
 You've already added `*_DOMAIN` to `pr_integration_tests.yml`. Now we're going to add the remaining ones.
 
@@ -114,7 +114,7 @@ Step 4. Submit this PR like any other.
 
 GitHub Actions should kick and and run the tests.
 
-The tests will fail if a secret is wrong or missing.  It may take a few iterations to get everything working because... computers.
+The tests will fail if a secret is wrong or missing. It may take a few iterations to get everything working because... computers.
 
 # Donate secrets to the project
 
@@ -136,7 +136,7 @@ Some rules:
 
 Now that we've covered all that...
 
-Create a new Github issue with a subject "Add PROVIDER to automated tests" where "PROVIDER" is the name of the provider. DO NOT SEND THE CREDENTIALS IN THE GITHUB ISSUE.  Write that you understand the above rules and would like to volunteer to maintain the credentials and account.
+Create a new Github issue with a subject "Add PROVIDER to automated tests" where "PROVIDER" is the name of the provider. DO NOT SEND THE CREDENTIALS IN THE GITHUB ISSUE. Write that you understand the above rules and would like to volunteer to maintain the credentials and account.
 
 To securely send the credentials to the project, use this link: [https://transfer.secretoverflow.com/u/tlimoncelli](https://transfer.secretoverflow.com/u/tlimoncelli)
 

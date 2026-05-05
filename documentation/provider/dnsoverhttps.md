@@ -53,7 +53,7 @@ D("example.com", REG_MONITOR,
 {% endcode %}
 
 {% hint style="info" %}
-**NOTE**: This checks the NS records via a DNS query.  It does not check the
+**NOTE**: This checks the NS records via a DNS query. It does not check the
 registrar's delegation (i.e. the `Name Server:` field in whois). In theory
 these are the same thing but there may be situations where they are not.
 {% endhint %}

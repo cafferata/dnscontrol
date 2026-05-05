@@ -103,9 +103,9 @@ D_EXTEND("example.com!inside",
 ```
 {% endcode %}
 
-A domain name without a `!` is assigned a tag that is the empty string. For example, `example.com` and `example.com!` are equivalent. However, we strongly recommend against using the empty tag, as it risks creating confusion.  In other words, if you have `domain.tld` and `domain.tld!external` you now require humans to remember that `domain.tld` is the external one.  I mean... the internal one.  You may have noticed this mistake, but will your coworkers?  Will you in six months? You get the idea.
+A domain name without a `!` is assigned a tag that is the empty string. For example, `example.com` and `example.com!` are equivalent. However, we strongly recommend against using the empty tag, as it risks creating confusion. In other words, if you have `domain.tld` and `domain.tld!external` you now require humans to remember that `domain.tld` is the external one. I mean... the internal one. You may have noticed this mistake, but will your coworkers? Will you in six months? You get the idea.
 
-DNSControl command line flag `--domains` matches the full name (with the "!").  If you define domains `example.com!john`, `example.com!paul`, and `example.com!george` then:
+DNSControl command line flag `--domains` matches the full name (with the "!"). If you define domains `example.com!john`, `example.com!paul`, and `example.com!george` then:
 
 * `--domains=example.com` will not match any of the three.
 * `--domains='example.com!george'` will only match george.
@@ -114,6 +114,6 @@ DNSControl command line flag `--domains` matches the full name (with the "!").  
 
 {% hint style="info" %}
 **NOTE**: The quotes are required if your shell treats `!` as a special
-character, which is probably does.  If you see an error that mentions
+character, which is probably does. If you see an error that mentions
 `event not found` you probably forgot the quotes.
 {% endhint %}

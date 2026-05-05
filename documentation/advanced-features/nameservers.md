@@ -4,7 +4,7 @@ DNSControl can handle a variety of provider scenarios. The registrar and DNS pro
 
 # Constants
 
-All the examples use the variables.  Substitute your own.
+All the examples use the variables. Substitute your own.
 
 {% code title="dnsconfig.js" %}
 ```javascript
@@ -62,7 +62,7 @@ D("example.com", REG_NAMECOM,
 
 ## Registrar is elsewhere
 
-Purpose: This is a "DNS only" configuration.  Use it when you don't control the registrar but you do control the DNS records.
+Purpose: This is a "DNS only" configuration. Use it when you don't control the registrar but you do control the DNS records.
 
 Why? You don't have access to the registrar, or the registrar is not supported by DNSControl. However you do have API access for updating the zone's records (most likely at a different provider).
 
@@ -100,7 +100,7 @@ dnscontrol print-ir | jq -r '.domains[].name'
 
 ## Zone is elsewhere
 
-Purpose: This is a "Registrar only" configuration.  Use it when you control the registrar but want to delegate the zone to someone else.
+Purpose: This is a "Registrar only" configuration. Use it when you control the registrar but want to delegate the zone to someone else.
 
 Why? We are delegating the domain to someone else. In this example we're pointing the domain to the nsone.net DNS service, which someone else is controlling.
 
@@ -119,7 +119,7 @@ D("example.com", REG_NAMECOM,
 
 Purpose: Ignore the provider's default nameservers and substitute our own.
 
-Why? Rarely used unless the DNS provider's API does not support querying what the nameservers are, or the API is returning invalid data, or if the API returns no information.  Sometimes APIs return no (useful) information when the domain is new; this is a good temporary work-around until the API starts working.
+Why? Rarely used unless the DNS provider's API does not support querying what the nameservers are, or the API is returning invalid data, or if the API returns no information. Sometimes APIs return no (useful) information when the domain is new; this is a good temporary work-around until the API starts working.
 
 {% code title="dnsconfig.js" %}
 ```javascript
@@ -175,7 +175,7 @@ Purpose: Use two different DNS services:
 
 Why? Diversity. If one DNS provider goes down, the other will be used.
 
-Little known fact: Most DNS recursive resolvers monitor which DNS servers are performing the best and automatically start avoiding servers that are slow or down. This means that if you use this technique and one DNS provider goes down, after a while your users won't be affected.  Not all software does this properly. More info: https://www.dns-oarc.net/files/workshop-201203/OARC-workshop-London-2012-NS-selection.pdf
+Little known fact: Most DNS recursive resolvers monitor which DNS servers are performing the best and automatically start avoiding servers that are slow or down. This means that if you use this technique and one DNS provider goes down, after a while your users won't be affected. Not all software does this properly. More info: https://www.dns-oarc.net/files/workshop-201203/OARC-workshop-London-2012-NS-selection.pdf
 
 {% hint style="info" %}
 **NOTE**: This is overkill unless you have millions of users and strict up-time requirements.
@@ -195,7 +195,7 @@ D("example.com", REG_NAMECOM,
 
 ## Make zonefile backups
 
-Purpose: Make backups of DNS records in a zone.  This generates a zonefile listing all the records in the zone.
+Purpose: Make backups of DNS records in a zone. This generates a zonefile listing all the records in the zone.
 
 Why? You want to write out a BIND-style zonefile for debugging, historical, or auditing purposes. Some sites do backups of these zonefiles to create a history of changes. This is different than keeping a history of `dnsconfig.js` because this is the output of DNSControl, not the input.
 
@@ -233,7 +233,7 @@ D("example.com", REG_MONITOR,
 {% endcode %}
 
 {% hint style="info" %}
-**NOTE**: This checks the NS records via a DNS query.  It does not check the
+**NOTE**: This checks the NS records via a DNS query. It does not check the
 registrar's delegation (i.e. the `Name Server:` field in whois). In theory
 these are the same thing but there may be situations where they are not.
 {% endhint %}

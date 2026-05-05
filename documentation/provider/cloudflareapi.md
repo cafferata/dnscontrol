@@ -3,7 +3,7 @@ This is the provider for [Cloudflare](https://www.cloudflare.com/).
 ## Important notes
 
 * SPF records are silently converted to RecordType `TXT` as Cloudflare API fails otherwise. See [DNSControl/dnscontrol#446](https://github.com/DNSControl/dnscontrol/issues/446).
-* This provider currently fails if there are more than 1000 corrections on one domain. This only affects "push". This usually when moving a domain with many records to Cloudflare.  Try commenting out most records, then uncomment groups of 999. Typical updates are less than 1000 corrections and will not trigger this bug. See [DNSControl/dnscontrol#1440](https://github.com/DNSControl/dnscontrol/issues/1440).
+* This provider currently fails if there are more than 1000 corrections on one domain. This only affects "push". This usually when moving a domain with many records to Cloudflare. Try commenting out most records, then uncomment groups of 999. Typical updates are less than 1000 corrections and will not trigger this bug. See [DNSControl/dnscontrol#1440](https://github.com/DNSControl/dnscontrol/issues/1440).
 * DNS records that Cloudflare injects and maintains are ignored. That includes SOA records, NS records at the domain's apex, and the MX/DKIM records created as part of Cloudflare mail routing.
 
 ## Configuration
@@ -41,7 +41,7 @@ export CLOUDFLAREAPI_DEBUG=1
 
 The Cloudflare API supports two different authentication methods.
 
-NOTE: You can not mix the two authentication methods.  If you try, DNSControl will report an error.
+NOTE: You can not mix the two authentication methods. If you try, DNSControl will report an error.
 
 ### API Tokens (recommended)
 
@@ -61,8 +61,8 @@ This method is enabled by setting the `apitoken` value in `creds.json`:
 ```
 {% endcode %}
 
-* `accountid` is found in the Cloudflare portal ("Account ID") on any "Website" page.  Click on any site and you'll see the "Account ID" on the lower right side of the page.
-* `apitoken` is something you must create. See [Cloudflare's documentation](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) for instructions on how to generate and configure permissions on API tokens.  (Spoiler alert: [link](https://dash.cloudflare.com/profile/api-tokens). The token must be granted rights (authorization to do certain tasks) at a very granular level.
+* `accountid` is found in the Cloudflare portal ("Account ID") on any "Website" page. Click on any site and you'll see the "Account ID" on the lower right side of the page.
+* `apitoken` is something you must create. See [Cloudflare's documentation](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) for instructions on how to generate and configure permissions on API tokens. (Spoiler alert: [link](https://dash.cloudflare.com/profile/api-tokens). The token must be granted rights (authorization to do certain tasks) at a very granular level.
 
 DNSControl requires the token to have the following permissions:
 
@@ -130,7 +130,7 @@ What does on/off/full mean?
 
    * "off" disables the Cloudflare proxy
    * "on" enables the Cloudflare proxy (turns on the "orange cloud")
-   * "full" is the same as "on" but also enables Railgun.  DNSControl will prevent you from accidentally enabling "full" on a CNAME that points to an A record that is set to "off", as this is generally not desired.
+   * "full" is the same as "on" but also enables Railgun. DNSControl will prevent you from accidentally enabling "full" on a CNAME that points to an A record that is set to "off", as this is generally not desired.
 
 You can also set the default proxy mode using `DEFAULTS()` function. For example:
 
@@ -383,7 +383,7 @@ var CF_MANAGE_TAGS = {"cloudflare_manage_tags": "true"};
 
 ## Old-style vs new-style redirects
 
-Old-style redirects uses the [Page Rules](https://developers.cloudflare.com/rules/page-rules/) product feature, which is [going away](https://developers.cloudflare.com/rules/reference/page-rules-migration/).  In this mode, `CF_REDIRECT` and `CF_TEMP_REDIRECT` functions generate Page Rules.
+Old-style redirects uses the [Page Rules](https://developers.cloudflare.com/rules/page-rules/) product feature, which is [going away](https://developers.cloudflare.com/rules/reference/page-rules-migration/). In this mode, `CF_REDIRECT` and `CF_TEMP_REDIRECT` functions generate Page Rules.
 
 Enable it using:
 
@@ -394,7 +394,7 @@ var DSP_CLOUDFLARE = NewDnsProvider("cloudflare", {
 });
 ```
 
-New redirects uses the [Single Redirects](https://developers.cloudflare.com/rules/url-forwarding/) product feature.  In this mode, `CF_REDIRECT` and `CF_TEMP_REDIRECT` functions generates Single Redirects.
+New redirects uses the [Single Redirects](https://developers.cloudflare.com/rules/url-forwarding/) product feature. In this mode, `CF_REDIRECT` and `CF_TEMP_REDIRECT` functions generates Single Redirects.
 
 Enable it using:
 
@@ -406,7 +406,7 @@ var DSP_CLOUDFLARE = NewDnsProvider("cloudflare", {
 
 {% hint style="warning" %}
 New-style redirects ("Single Redirect Rules") are a new feature of DNSControl
-as of v4.12.0 and may have bugs.  Please test carefully.
+as of v4.12.0 and may have bugs. Please test carefully.
 {% endhint %}
 
 ### Conversion mode:
@@ -416,28 +416,28 @@ DNSControl can convert from old-style redirects (Page Rules) to new-style redire
 {% hint style="warning" %}
 The conversion process only handles a few, very simple, patterns.
 See `providers/cloudflare/rtypes/cfsingleredirect/convert_test.go` for a list of patterns
-supported.  Please file bugs if you find problems. PRs welcome!
+supported. Please file bugs if you find problems. PRs welcome!
 {% endhint %}
 
 In conversion mode, DNSControl takes `CF_REDIRECT`/`CF_TEMP_REDIRECT` statements and turns each of them into two records: a Page Rules and an equivalent Single Redirects rule.
 
-Cloudflare processes Single Redirects before Page Rules, thus it is safe to have both at the same time, and provides an easy way to test the new-style rules.  If they do not work properly, use the Cloudflare web-based control panel to manually delete the new-style rule to expose the old-style rule. (and report the bug to DNSControl!)
+Cloudflare processes Single Redirects before Page Rules, thus it is safe to have both at the same time, and provides an easy way to test the new-style rules. If they do not work properly, use the Cloudflare web-based control panel to manually delete the new-style rule to expose the old-style rule. (and report the bug to DNSControl!)
 
-You'll find the new-style rule in the Cloudflare control panel.  It will have a very long name that includes the `CF_REDIRECT`/`CF_TEMP_REDIRECT` operands plus matcher and replacement expressions.
+You'll find the new-style rule in the Cloudflare control panel. It will have a very long name that includes the `CF_REDIRECT`/`CF_TEMP_REDIRECT` operands plus matcher and replacement expressions.
 
-There is no mechanism to easily delete the old-style rules.  Either delete them manually using the Cloudflare control panel or wait for Cloudflare to remove the old-style Page Rule feature.
+There is no mechanism to easily delete the old-style rules. Either delete them manually using the Cloudflare control panel or wait for Cloudflare to remove the old-style Page Rule feature.
 
 Once the conversion is complete, change `manage_redirects` to `false` then either delete the old redirects via the CloudFlare control panel or wait for Cloudflare to remove support for the old-style feature.
 
 {% hint style="warning" %}
 Cloudflare's announcement says that they will convert old-style redirects (Page Rules) to new-style
-redirect (Single Redirects) but they do not give an exact date for when this will happen.  DNSControl
+redirect (Single Redirects) but they do not give an exact date for when this will happen. DNSControl
 will probably see these new redirects as foreign and delete them.
 
 Therefore it is probably safer to do the conversion ahead of them.
 
 On the other hand, if you let them do the conversion, their conversion may be more correct
-than DNSControl's.  However there's no way for DNSControl to manage them since the automatically-generated name will be different.
+than DNSControl's. However there's no way for DNSControl to manage them since the automatically-generated name will be different.
 
 If you have suggestions on how to handle this better please file a bug.
 {% endhint %}
@@ -536,7 +536,7 @@ D("foo.com", REG_NONE, DnsProvider(DSP_CLOUDFLARE),
 ```
 {% endcode %}
 
-The API key you use must be enabled to edit workers.  In the portal, edit the API key, under "Permissions" add "Account", "Workers Scripts", "Edit". Without this permission you may see errors that mention "failed fetching worker route list from cloudflare: bad status code from cloudflare: 403 not 200"
+The API key you use must be enabled to edit workers. In the portal, edit the API key, under "Permissions" add "Account", "Workers Scripts", "Edit". Without this permission you may see errors that mention "failed fetching worker route list from cloudflare: bad status code from cloudflare: 403 not 200"
 
 Please notice that if _any_ `CF_WORKER_ROUTE` function is used then `dnscontrol` will manage _all_ Worker Routes for the domain. To be clear: this means it will delete existing routes that were created outside of DNSControl.
 
@@ -563,14 +563,14 @@ If you are unable to ignore the warning, any of these will remove it:
 
 ## Integration testing
 
-The integration tests assume that Cloudflare Workers are enabled and the credentials used have the required permissions listed above.  The flag `-cfworkers=false` will disable tests related to Workers. This flag is intended for use with legacy domains where the integration test credentials do not have access to read/edit Workers. This flag will eventually go away.
+The integration tests assume that Cloudflare Workers are enabled and the credentials used have the required permissions listed above. The flag `-cfworkers=false` will disable tests related to Workers. This flag is intended for use with legacy domains where the integration test credentials do not have access to read/edit Workers. This flag will eventually go away.
 
 ```shell
 cd integrationTest              # NOTE: Not needed if already in that subdirectory
 go test -v -verbose -profile CLOUDFLAREAPI -cfworkers=false
 ```
 
-When `-cfworkers=false` is set, tests related to Workers are skipped.  The Account ID is not required.
+When `-cfworkers=false` is set, tests related to Workers are skipped. The Account ID is not required.
 
 ### CNAME flattening tests
 
@@ -601,7 +601,7 @@ go test -v -verbose -profile CLOUDFLAREAPI -cfflatten=true -cftags=true
 
 ## Cloudflare special TTLs
 
-Cloudflare plays tricks with TTLs.  Cloudflare uses "1" to mean "auto-ttl"; which as far as we can tell means 300 seconds (5 minutes) with the option that CloudFlare may dynamically adjust the actual TTL.
+Cloudflare plays tricks with TTLs. Cloudflare uses "1" to mean "auto-ttl"; which as far as we can tell means 300 seconds (5 minutes) with the option that CloudFlare may dynamically adjust the actual TTL.
 
 If the TTL isn't set to 1, Cloudflare has a minimum of 1 minutes.
 

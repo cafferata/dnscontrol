@@ -19,7 +19,7 @@ When both `token` and `apikey` are defined, the priority is given to `token` whi
 
 The [sharing_id](https://api.gandi.net/docs/reference/#Sharing-ID) selects between different organizations which your account is a member of; to manage domains in multiple organizations, you can use multiple `creds.json` entries.
 
-How to find the `sharing_id`: The sharing ID is the second hex string found in the URL on the portal. Log into the Gandi website, click on "organizations" in the leftnav, and click on the organization name.  The URL will be something like:
+How to find the `sharing_id`: The sharing ID is the second hex string found in the URL on the portal. Log into the Gandi website, click on "organizations" in the leftnav, and click on the organization name. The URL will be something like:
 
 ```text
 https://admin.gandi.net/organizations/[not this hex string]/PLTS/[sharing id]/profile
@@ -88,11 +88,11 @@ This is the error you'll see if your `token` (or (deprecated) `apikey`) in `cred
 WARNING: Domain 'example.com' does not exist in the 'secname' profile and will be added automatically.
 ```
 
-This error is caused by the internal `ListZones()` functions returning no domain names.  This is usually because your `creds.json` information is pointing at an empty organization or no organization.  The solution is to set `sharing_id` in `creds.json`.
+This error is caused by the internal `ListZones()` functions returning no domain names. This is usually because your `creds.json` information is pointing at an empty organization or no organization. The solution is to set `sharing_id` in `creds.json`.
 
 ### get-zones "nameonly" returns nothing
 
-If a `dnscontrol get-zones --format=nameonly CredId - all` returns nothing, this is usually because your `creds.json`  information is pointing at an empty organization or no organization.  The solution is to set `sharing_id` in `creds.json`.
+If a `dnscontrol get-zones --format=nameonly CredId - all` returns nothing, this is usually because your `creds.json` information is pointing at an empty organization or no organization. The solution is to set `sharing_id` in `creds.json`.
 
 ## Development
 

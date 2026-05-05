@@ -8,10 +8,10 @@ name: AUTODNSSEC_ON
 
 AutoDNSSEC is a feature where a DNS provider can automatically manage DNSSEC for a domain. Not all providers support this.
 
-At this time, `AUTODNSSEC_ON` takes no parameters.  There is no ability to tune what the DNS provider sets, no algorithm choice.  We simply ask that they follow their defaults when enabling a no-fuss DNSSEC data model.
+At this time, `AUTODNSSEC_ON` takes no parameters. There is no ability to tune what the DNS provider sets, no algorithm choice. We simply ask that they follow their defaults when enabling a no-fuss DNSSEC data model.
 
 {% hint style="info" %}
-**NOTE**: No parenthesis should follow these keywords.  That is, the
+**NOTE**: No parenthesis should follow these keywords. That is, the
 correct syntax is `AUTODNSSEC_ON` not `AUTODNSSEC_ON()`
 {% endhint %}
 

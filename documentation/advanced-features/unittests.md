@@ -18,7 +18,7 @@ dnscontrol print-ir --out foo.json --pretty
 **NOTE**: The `--pretty` flag is optional.
 {% endhint %}
 
-Here is a sample test written in `bash` using the [jq](https://stedolan.github.io/jq/) command.  This fails if the number of MX records in the `stackex.com` domain is not exactly 5:
+Here is a sample test written in `bash` using the [jq](https://stedolan.github.io/jq/) command. This fails if the number of MX records in the `stackex.com` domain is not exactly 5:
 
     COUNTMX=$(jq --raw-output <foo.json '.domains[] | select(.name == "stackex.com") | .records[] | select(.type == "MX") | .target' | wc -l)
     echo COUNT=:"$COUNTMX":

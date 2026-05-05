@@ -74,7 +74,7 @@ In order to activate API functionality on your Name.com account, you must apply 
 integration_test.go:140: api returned unexpected response: invalid character '<' looking for beginning of value
 ```
 
-This error means an invalid URL is being used to reach the API endpoint.  It usually means a setting is `api.name.com/api` when `api.name.com` is correct (i.e. remove the `/api`).
+This error means an invalid URL is being used to reach the API endpoint. It usually means a setting is `api.name.com/api` when `api.name.com` is correct (i.e. remove the `/api`).
 
 In integration tests:
 

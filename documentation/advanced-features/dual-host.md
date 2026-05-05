@@ -2,9 +2,9 @@
 
 The dual hosting feature of DNSControl provides for the ability to use multiple DNS providers simultaneously. Consult your provider docs to ensure that **both** of them support this feature.
 
-✅  - A checkmark means "this has been tested, and the provider works with dual hosting".
-❔  - The questionmark means "it hasn't been tested, safety unknown"
-❌  - The red "X" means "this has been tested, and it does _not_ work currently".
+✅ - A checkmark means "this has been tested, and the provider works with dual hosting".
+❔ - The questionmark means "it hasn't been tested, safety unknown"
+❌ - The red "X" means "this has been tested, and it does _not_ work currently".
 
 ## Source reference
 

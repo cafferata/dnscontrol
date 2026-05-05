@@ -49,18 +49,18 @@ go test -v -verbose -profile ROUTE53 -start 16 -end 20
 
 The `start` and `end` flags are both inclusive (i.e. `-start 16 -end 20` will run `[16, 17, 18, 19, 20]`).
 
-For some providers it may be necessary to increase the test timeout using `-test`. The default is 10 minutes.  `0` is "no limit".  Typical Go durations work too (`1h` for 1 hour, etc).
+For some providers it may be necessary to increase the test timeout using `-test`. The default is 10 minutes. `0` is "no limit". Typical Go durations work too (`1h` for 1 hour, etc).
 
 ```shell
 go test -timeout 0 -v -verbose -profile CLOUDNS
 ```
 
-FYI: The order of the flags matters.  Flags native to the Go testing suite (`-timeout` and `-v`) must come before flags that are part of the DNSControl integration tests (`-verbose`, `-profile`). Yeah, that sucks and is confusing.
+FYI: The order of the flags matters. Flags native to the Go testing suite (`-timeout` and `-v`) must come before flags that are part of the DNSControl integration tests (`-verbose`, `-profile`). Yeah, that sucks and is confusing.
 
-The actual tests are in the file `integrationTest/integration_test.go`.  The tests are in a little language which can be used to describe just about any interaction with the API.  Look for the comment `START HERE` or the line `func makeTests` for instructions.
+The actual tests are in the file `integrationTest/integration_test.go`. The tests are in a little language which can be used to describe just about any interaction with the API. Look for the comment `START HERE` or the line `func makeTests` for instructions.
 
 {% hint style="warning" %}
-**WARNING**: THE RECORDS IN THE TEST DOMAIN WILL BE DELETED.  Only use
+**WARNING**: THE RECORDS IN THE TEST DOMAIN WILL BE DELETED. Only use
 a domain that is not used in production. Some providers have a way
 to run tests on domains that aren't registered (often a test
 environment or a side-effect of the company not being a registrar).

@@ -58,7 +58,7 @@ This provider only supports creating primary zones in Akamai. If a secondary zon
 ## Usage
 Store your zone configuration details in a dnsconfig.js file in the same folder where the creds.json file is present.
 
-Akamai assigns a unique set of authoritative nameservers for each contract.  These authorities should be used as the NS records on all zones belonging to this contract.
+Akamai assigns a unique set of authoritative nameservers for each contract. These authorities should be used as the NS records on all zones belonging to this contract.
 
 The NS records for these authorities have a TTL of 86400.
 

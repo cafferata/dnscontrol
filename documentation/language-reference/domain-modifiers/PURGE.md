@@ -2,7 +2,7 @@
 name: PURGE
 ---
 
-`PURGE` is the default setting for all domains.  Therefore `PURGE` is a no-op. It is included for completeness only.
+`PURGE` is the default setting for all domains. Therefore `PURGE` is a no-op. It is included for completeness only.
 
 A domain with a mixture of `NO_PURGE` and `PURGE` parameters will abide by the last one.
 

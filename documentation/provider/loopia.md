@@ -5,7 +5,7 @@ They provide DNS services, both as a registrar, and a provider. They provide sup
 This plugin is based on API documents found at [https://www.loopia.com/api/](https://www.loopia.com/api/) and by observing API responses. Hat tip to GitHub @hazzeh whose code for the LEGO Loopia implementation was helpful.
 
 Sadly the Loopia API has some problems:
-* API calls are limited to 60 calls per minute.  If you go above this, you will have to wait before you can make changes.
+* API calls are limited to 60 calls per minute. If you go above this, you will have to wait before you can make changes.
 * When rate-limited, you will not receive a single HTTP error: The errors propagate from the back-end, with no headers, or Retry-After or anything useful.
 * There are no guarantees of idempotency from their API.
 

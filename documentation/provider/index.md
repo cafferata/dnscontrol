@@ -401,7 +401,7 @@ Providers in this category and their maintainers are:
 
 The other providers are supported by community members, usually the original contributor.
 
-Due to the large number of DNS providers in the world, the DNSControl team can not support and test all providers.  Test frameworks are provided to help community members support their code independently.
+Due to the large number of DNS providers in the world, the DNSControl team can not support and test all providers. Test frameworks are provided to help community members support their code independently.
 
 Expectations of maintainers:
 
@@ -409,8 +409,8 @@ Expectations of maintainers:
 * Maintainers should set up test accounts and periodically verify that all tests pass (`pkg/js/parse_tests` and `integrationTest`).
 * Contributors are encouraged to add new tests and refine old ones. (Test-driven development is encouraged.)
 * Bugs will be referred to the maintainer or their designate.
-* Maintainers must be responsible to bug reports and PRs.  If a maintainer is unresponsive for more than 2 months, we will consider disabling the provider.  First we will put out a call for new maintainer. If nobody volunteers, the provider may be disabled.
-* Tom needs to know your real email address.  Please email tal at what exit dot org so he has it.
+* Maintainers must be responsible to bug reports and PRs. If a maintainer is unresponsive for more than 2 months, we will consider disabling the provider. First we will put out a call for new maintainer. If nobody volunteers, the provider may be disabled.
+* Tom needs to know your real email address. Please email tal at what exit dot org so he has it.
 
 Providers in this category and their maintainers are:
 
@@ -501,6 +501,6 @@ A: Following [provider requests](../developer-info/provider-request.md), the req
 
 #### Q: Would someone write a provider for me?
 
-A: The maintainer of DNSControl does not write new providers.  New providers are contributed by the community.
+A: The maintainer of DNSControl does not write new providers. New providers are contributed by the community.
 
-DNSControl tries to make writing a provider as easy as possible.  DNSControl does most of the work for you, you only have to write code to authenticate, download DNS records, and perform create/modify/delete operations on those records. Please read the directions for [Writing new DNS providers](../advanced-features/writing-providers.md).  The DNS maintainers will gladly coach you through the process.
+DNSControl tries to make writing a provider as easy as possible. DNSControl does most of the work for you, you only have to write code to authenticate, download DNS records, and perform create/modify/delete operations on those records. Please read the directions for [Writing new DNS providers](../advanced-features/writing-providers.md). The DNS maintainers will gladly coach you through the process.

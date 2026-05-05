@@ -56,7 +56,7 @@ $
 
 # Using `fmt` as a filter
 
-`fmt` can also work as a filter by setting the input or output to `""` in which case stdin or stdout is used, respectively.  When the output is stdout, the filename is never output.
+`fmt` can also work as a filter by setting the input or output to `""` in which case stdin or stdout is used, respectively. When the output is stdout, the filename is never output.
 
 ```shell
 $ dnscontrol fmt -o "" >new-dnsconfig.js

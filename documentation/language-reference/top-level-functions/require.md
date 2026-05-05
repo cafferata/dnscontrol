@@ -9,7 +9,7 @@ ts_ignore: true
 
 A better name for this function might be "include".
 
-If the supplied `path` string ends with `.js`, the file is interpreted as JavaScript code, almost as though its contents had been included in the currently-executing file.  If  the path string ends with `.json` or `.json5` (case insensitive), `require()` returns the `JSON.parse()` of the file's contents.
+If the supplied `path` string ends with `.js`, the file is interpreted as JavaScript code, almost as though its contents had been included in the currently-executing file. If the path string ends with `.json` or `.json5` (case insensitive), `require()` returns the `JSON.parse()` of the file's contents.
 
 If the path string begins with a `./`, it is interpreted relative to the currently-loading file (which may not be the file where the `require()` statement is, if called within a function). Otherwise it is interpreted relative to the program's working directory at the time of the call.
 
@@ -106,4 +106,4 @@ JSON5 works the same way, but the filename ends in `.json5`. (Note: JSON5 featur
 
 `require()` is *much* closer to PHP's `include()` function than it is to node's `require()`.
 
-Node's `require()` only includes a file once. In contrast, DNSControl's `require()` is actually an imperative command to load the file and execute the code or parse the data from it.  For example if two files both `require("./tools.js")`, then it will be loaded twice, whereas in node.js it would only be loaded once.
+Node's `require()` only includes a file once. In contrast, DNSControl's `require()` is actually an imperative command to load the file and execute the code or parse the data from it. For example if two files both `require("./tools.js")`, then it will be loaded twice, whereas in node.js it would only be loaded once.

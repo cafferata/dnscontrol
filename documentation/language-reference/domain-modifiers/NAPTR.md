@@ -33,7 +33,7 @@ In the case of E164 (e.g. `3.2.1.5.5.5.0.0.8.1.e164.arpa.`) - where [`terminalfl
 
 ### `order`
 
-ordinal (1st, 2nd, 3rd, ...) 16 bit number (2^16 i.e. <= 65535) which determines lower entries are sent first (`1`), and  higher, last (`65535`).
+ordinal (1st, 2nd, 3rd, ...) 16 bit number (2^16 i.e. <= 65535) which determines lower entries are sent first (`1`), and higher, last (`65535`).
 
 ### `preference`
 

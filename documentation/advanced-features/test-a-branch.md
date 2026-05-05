@@ -4,7 +4,7 @@ Instructions for testing DNSControl at a particular PR or branch.
 
 Assumptions:
 * `/THE/PATH` -- Change this to the full path to where your dnsconfig.js and other files are located.
-* `INSERT_BRANCH_HERE` -- The branch you want to test.  The branch associated with a PR is listed on [https://github.com/DNSControl/dnscontrol/branches](https://github.com/DNSControl/dnscontrol/branches).
+* `INSERT_BRANCH_HERE` -- The branch you want to test. The branch associated with a PR is listed on [https://github.com/DNSControl/dnscontrol/branches](https://github.com/DNSControl/dnscontrol/branches).
 
 ## Using Docker
 

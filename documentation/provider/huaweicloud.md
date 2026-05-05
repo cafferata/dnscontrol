@@ -1,6 +1,6 @@
 ## Configuration
 
-This provider is for the [Huawei Cloud DNS](https://www.huaweicloud.com/intl/en-us/product/dns.html)(Public DNS).  To use this provider, add an entry to `creds.json` with `TYPE` set to `HUAWEICLOUD`.
+This provider is for the [Huawei Cloud DNS](https://www.huaweicloud.com/intl/en-us/product/dns.html)(Public DNS). To use this provider, add an entry to `creds.json` with `TYPE` set to `HUAWEICLOUD`.
 along with the API credentials.
 
 Example:

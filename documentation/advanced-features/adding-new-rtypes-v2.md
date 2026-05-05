@@ -2,7 +2,7 @@
 
 Everyone is familiar with A, AAAA, CNAME, NS and other Rtypes. However there are new record types being added all the time. Each new record type requires special handling by DNSControl.
 
-Version v4.28.0 greatly simplified how to add new record types. As a demonstration of this new method it added the "RP" type and ported the existing "CLOUDFLAREAPI_SINGLE_REDIRECT" type.  All other records still use the old method. The old and new methods co-exist, though eventually we hope to migrate everything to the new method.
+Version v4.28.0 greatly simplified how to add new record types. As a demonstration of this new method it added the "RP" type and ported the existing "CLOUDFLAREAPI_SINGLE_REDIRECT" type. All other records still use the old method. The old and new methods co-exist, though eventually we hope to migrate everything to the new method.
 
 # What's new?
 
@@ -10,9 +10,9 @@ Version v4.28.0 greatly simplified how to add new record types. As a demonstrati
 * NEW: the RecordConfig struct has a pointer to a struct describing the fields of the record.
 * Benefit: Saves memory.
 
-* OLD: helpers.js performs validation, executes builders, etc.  Since we don't have a test framework for Javascript, this is brittle and difficult to debug.
+* OLD: helpers.js performs validation, executes builders, etc. Since we don't have a test framework for Javascript, this is brittle and difficult to debug.
 * NEW: helpers.js packs up the fields, whatever they are, and handes them off to Go code for processing. The Go test framework is available.
-* Benefit: More testable, easier to  develop as you don't need to know 2 languages.
+* Benefit: More testable, easier to develop as you don't need to know 2 languages.
 
 * OLD: Critical things like IDN processing, normalization (downcasing), and validation happen late in the pipeline by `pkg/normalize`.
 * NEW: The factory that creates a RecordConfig performs all that.
@@ -48,7 +48,7 @@ At the end of the file, add a single line named after the record type.
 var RP = rawrecordBuilder('RP');
 ```
 
-In this example, the first `RP` is the name of the function that users will type in dnsconfig.js.  For example, `A("label", "10.2.3.4"),` (though the "A" record type hasn't been ported to the new system yet).
+In this example, the first `RP` is the name of the function that users will type in dnsconfig.js. For example, `A("label", "10.2.3.4"),` (though the "A" record type hasn't been ported to the new system yet).
 
 Step 2: Create the parser
 
@@ -101,12 +101,12 @@ func (handle *THING) Name() string {
 
 Step 2d: Create FromArgs
 
-The "FromArgs" function receives an array of `any` which can contain any type.  The "PaveArgs" function will convert them to the types you need. For example, it will convert numbers to strings, or strings to numbers.
+The "FromArgs" function receives an array of `any` which can contain any type. The "PaveArgs" function will convert them to the types you need. For example, it will convert numbers to strings, or strings to numbers.
 
 * "s": Convert to string
 * "i": Convert to int16
 
-`args[0]` is the label. You can skip it as that is already processed for you.  (If you want to modify the label, see cfsingle.go as an example of how to do that.)
+`args[0]` is the label. You can skip it as that is already processed for you. (If you want to modify the label, see cfsingle.go as an example of how to do that.)
 
 If THING takes 4 parameters (2 ints and 2 strings), you might pave the arguments as follows:
 
@@ -145,13 +145,13 @@ Create the CopyToLegacyFields function
 
 This updates any of the legacy fields. The most important is the .target field, which we usually store a copy of the .ZonefilePartial.
 
-When we migrate other rtypes this will populate the legacy RecordConfig fields. For example, when we migrate `SRV`, this function will populate the `Srv*` fields.  Then, eventually, we'll remove those legacy fields.
+When we migrate other rtypes this will populate the legacy RecordConfig fields. For example, when we migrate `SRV`, this function will populate the `Srv*` fields. Then, eventually, we'll remove those legacy fields.
 
 TODO: `js/parse_test`
 
 ## Add a capability for the record type
 
-You'll need to mark which providers support this record type. The initial PR should implement this record for the `BIND` provider at a minimum.  `BIND` outputs non-standard rtypes as a comment.
+You'll need to mark which providers support this record type. The initial PR should implement this record for the `BIND` provider at a minimum. `BIND` outputs non-standard rtypes as a comment.
 
 -   Add the capability to the file `dnscontrol/providers/capabilities.go` (look for `CanUseAlias` and add it to the end of the list.)
 -   Run stringer to auto-update the file `dnscontrol/providers/capability_string.go`
@@ -315,7 +315,7 @@ dc := models.MakeFakeDomainConfig(zoneName)
 
 # Tips for "builders"
 
-A "builder" is a function that create other records.  For example, SPF_BUILDER() creates a `TXT()` record.
+A "builder" is a function that create other records. For example, SPF_BUILDER() creates a `TXT()` record.
 
 A good example of a builder is `providers/cloudflare/rtypes/cfsingleredirect/cfredirect.go`
 

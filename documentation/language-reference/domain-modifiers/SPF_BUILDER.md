@@ -24,7 +24,7 @@ parameter_types:
 DNSControl can optimize the SPF settings on a domain by flattening (inlining) includes and removing duplicates. DNSControl also makes it easier to document your SPF configuration.
 
 {% hint style="warning" %}
-**WARNING**: Flattening SPF includes is risky.  Only flatten an SPF
+**WARNING**: Flattening SPF includes is risky. Only flatten an SPF
 setting if it is absolutely needed to bring the number of "lookups"
 to be less than 10. In fact, it is debatable whether or not ISPs
 enforce the "10 lookup rule".
@@ -45,7 +45,7 @@ D("example.com", REG_MY_PROVIDER, DnsProvider(DSP_MY_PROVIDER),
 This has a few problems:
 
 * No comments. It is difficult to add a comment. In particular, we want to be able to list which ticket requested each item in the SPF setting so that history is retained.
-* Ugly diffs.  If you add an element to the SPF setting, the diff will show the entire line changed, which is difficult to read.
+* Ugly diffs. If you add an element to the SPF setting, the diff will show the entire line changed, which is difficult to read.
 * Too many lookups. The SPF RFC says that SPF settings should not require more than 10 DNS lookups. If we manually flatten (i.e. "inline") an include, we have to remember to check back to see if the settings have changed. Humans are not good at that kind of thing.
 
 ## The DNSControl way
@@ -86,7 +86,7 @@ By using the `SPF_BUILDER()` we gain many benefits:
 
 * Comments can appear next to the element they refer to.
 * Diffs will be shorter and more specific; therefore easier to read.
-* Automatic flattening.  We can specify which includes should be flattened and DNSControl will do the work. It will even warn us if the includes change.
+* Automatic flattening. We can specify which includes should be flattened and DNSControl will do the work. It will even warn us if the includes change.
 
 ## Syntax
 
@@ -122,7 +122,7 @@ The parameters are:
 
 * `label:` The label of the first TXT record. (Optional. Default: `"@"`)
 * `overflow:` If set, SPF strings longer than 255 chars will be split into multiple TXT records. The value of this setting determines the template for what the additional labels will be named. If not set, no splitting will occur and DNSControl may generate TXT strings that are too long.
-* `overhead1:` "Overhead for the 1st TXT record".  When calculating the max length of each TXT record, reduce the maximum for the first TXT record in the chain by this amount.
+* `overhead1:` "Overhead for the 1st TXT record". When calculating the max length of each TXT record, reduce the maximum for the first TXT record in the chain by this amount.
 * `raw:` The label of the unaltered SPF settings. Setting to an empty string `''` will disable this. (Optional. Default: `"_rawspf"`)
 * `ttl:` This allows setting a specific TTL on this SPF record. (Optional. Default: using default record TTL)
 * `txtMaxSize` The maximum size for each TXT record. Values over 255 will result in [multiple strings][multi-string]. General recommendation is to [not go higher than 450][record-size] so that DNS responses will still fit in a UDP packet. (Optional. Default: `"255"`)
@@ -146,13 +146,13 @@ To count the number of lookups, you can use our interactive SPF debugger at [htt
 
 # The first in a chain is special
 
-When generating the chain of SPF records, each one is max length 255.  For the first item in the chain, the max is 255 - "overhead1".  Setting this to 255 or higher has undefined behavior.
+When generating the chain of SPF records, each one is max length 255. For the first item in the chain, the max is 255 - "overhead1". Setting this to 255 or higher has undefined behavior.
 
 Why is this useful?
 
 Some sites desire having all DNS queries fit in a single packet so that UDP, not TCP, can be used to satisfy all requests. That means all responses have to be relatively small.
 
-When an SPF system does a "TXT" lookup, it gets SPF and non-SPF records.  This makes the first link in the chain extra large.
+When an SPF system does a "TXT" lookup, it gets SPF and non-SPF records. This makes the first link in the chain extra large.
 
 The bottom line is that if you want the TXT records to fit in a UDP packet, keep increasing the value of `overhead1` until the packet is no longer truncated.
 
@@ -170,15 +170,15 @@ dig +short stackoverflow.com txt | wc -c
      582
 ```
 
-Since 582 is bigger than 255, it might not be possible to achieve the goal.  Any value larger than 255 will disable all flattening.  Try 170, then 180, 190 until you get the desired results.
+Since 582 is bigger than 255, it might not be possible to achieve the goal. Any value larger than 255 will disable all flattening. Try 170, then 180, 190 until you get the desired results.
 
 A validator such as [https://www.kitterman.com/spf/validate.html](https://www.kitterman.com/spf/validate.html) will tell you if the queries are being truncated and TCP was required to get the entire record. (Sadly it caches heavily.)
 
 ## Notes about the `spfcache.json`
 
-DNSControl will optionally keep a cache of the DNS lookups performed during optimization.  In the event that a DNS server is down, the cache will be used. This makes it possible to do `dnscontrol push` even if your or third-party DNS servers are down.
+DNSControl will optionally keep a cache of the DNS lookups performed during optimization. In the event that a DNS server is down, the cache will be used. This makes it possible to do `dnscontrol push` even if your or third-party DNS servers are down.
 
-To enable this feature, create an (empty) file called `spfcache.json` in the current directory.  To disable this feature, delete the file. There are no command-line flags related to this feature.
+To enable this feature, create an (empty) file called `spfcache.json` in the current directory. To disable this feature, delete the file. There are no command-line flags related to this feature.
 
 The `spfcache.json` stored the cached DNS lookups. If it needs to be updated, the new file contents will be written to a file called `spfcache.updated.json` and instructions such as the ones below will be output telling you exactly what to do:
 
@@ -199,11 +199,11 @@ The instructions are hardcoded strings. The filenames will not change. The instr
 
 1. DNSControl 'gives up' if it sees SPF records it can't understand. This includes: syntax errors, features that our spflib doesn't know about, overly complex SPF settings, and anything else that we we didn't feel like implementing.
 
-2. The TXT record that is generated may exceed DNS limits.  dnscontrol will not generate a single TXT record that exceeds DNS limits, but it ignores the fact that there may be other TXT records on the same label.  For example, suppose it generates a TXT record on the bare domain (stackoverflow.com) that is 250 bytes long. That's fine and doesn't require a continuation record.  However if there is another TXT record (not an SPF record, perhaps a TXT record used to verify domain ownership), the total packet size of all the TXT records could exceed 512 bytes, and will require EDNS or a TCP request.
+2. The TXT record that is generated may exceed DNS limits. dnscontrol will not generate a single TXT record that exceeds DNS limits, but it ignores the fact that there may be other TXT records on the same label. For example, suppose it generates a TXT record on the bare domain (stackoverflow.com) that is 250 bytes long. That's fine and doesn't require a continuation record. However if there is another TXT record (not an SPF record, perhaps a TXT record used to verify domain ownership), the total packet size of all the TXT records could exceed 512 bytes, and will require EDNS or a TCP request.
 
 3. DNSControl does not warn if the number of lookups exceeds 10. We hope to implement this some day.
 
-4. The `redirect=` directive is only partially implemented.  We only handle the case where redirect is the last item in the SPF record. In which case, it is equivalent to `include:`.
+4. The `redirect=` directive is only partially implemented. We only handle the case where redirect is the last item in the SPF record. In which case, it is equivalent to `include:`.
 
 ## Advanced Technique: Interactive SPF Debugger
 
@@ -221,7 +221,7 @@ The output is as follows:
 
 2. Fully flattened: This section shows the SPF configuration if you fully flatten it. i.e. This is what it would look like if all the checkboxes were checked. Note that this result is likely to be longer than 255 bytes, the limit for a single TXT string.
 
-3. Fully flattened split: This takes the "fully flattened" result and splits it into multiple DNS records.  To continue to the next record an include is added.
+3. Fully flattened split: This takes the "fully flattened" result and splits it into multiple DNS records. To continue to the next record an include is added.
 
 ## Advanced Technique: Define once, use many
 

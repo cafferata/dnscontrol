@@ -24,9 +24,9 @@ REVCOMPAT("rfc4183");  // RFC 4183: Adopt the newer standard.
 
 RFC 2317 and RFC 4183 are two different ways to implement reverse lookups for CIDR blocks that are not on 8-bit boundaries (/24, /16, /8).
 
-Originally DNSControl implemented the older standard, which only specifies what to do for /8, /16, /24 - /32.  Using `REV()` for /9-17 and /17-23 CIDRs was an error.
+Originally DNSControl implemented the older standard, which only specifies what to do for /8, /16, /24 - /32. Using `REV()` for /9-17 and /17-23 CIDRs was an error.
 
-v4 defaults to RFC 2317.  In v5.0 the default will change to RFC 4183. `REVCOMPAT()` is provided for those that wish to retain the old behavior.
+v4 defaults to RFC 2317. In v5.0 the default will change to RFC 4183. `REVCOMPAT()` is provided for those that wish to retain the old behavior.
 
 For more information, see [Opinion #9](../../advanced-features/opinions.md#opinion-9-rfc-4183-is-better-than-rfc-2317).
 

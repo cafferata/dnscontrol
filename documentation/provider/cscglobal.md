@@ -4,7 +4,7 @@ DNSControl's CSC Global provider supports being a Registrar. Support for being a
 **NOTE**: Experimental support for being a DNS Provider is available.
 However it is not recommended as updates take 5-7 minutes, and the
 next update is not permitted until the previous update is complete.
-Use it at your own risk.  Consider it experimental and undocumented.
+Use it at your own risk. Consider it experimental and undocumented.
 {% endhint %}
 
 ## Configuration

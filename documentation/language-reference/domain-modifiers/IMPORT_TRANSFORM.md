@@ -21,9 +21,9 @@ Not all records are copied and transformed:
 
 Example:
 
-Suppose foo.com is a regular domain.  bar.com is a regular domain, but certain records should be the same as foo.com with these exceptions: "bar.com" is added to the name, the TTL is changed to 300, if the IP address is between 1.2.3.10 and 1.2.3.20 then rewrite the IP address to be based on 123.123.123.100 (i.e. .113 or .114).
+Suppose foo.com is a regular domain. bar.com is a regular domain, but certain records should be the same as foo.com with these exceptions: "bar.com" is added to the name, the TTL is changed to 300, if the IP address is between 1.2.3.10 and 1.2.3.20 then rewrite the IP address to be based on 123.123.123.100 (i.e. .113 or .114).
 
-You wouldn't want to maintain bar.com manually, would you?  It would be very error prone. Therefore instead you maintain foo.com and let `IMPORT_TRANSFORM` automatically generate bar.com.
+You wouldn't want to maintain bar.com manually, would you? It would be very error prone. Therefore instead you maintain foo.com and let `IMPORT_TRANSFORM` automatically generate bar.com.
 
 ```text
 foo.com:
@@ -82,12 +82,12 @@ Only one of `newBase` and `newBase` may be specified. If both are non-null the b
 
 `NEW_BASE` works as follows:
 
-* An IP address.  Rebase the IP address on this IP address. Extract the host part of the /24 and add it to the "new base" address.
+* An IP address. Rebase the IP address on this IP address. Extract the host part of the /24 and add it to the "new base" address.
 * A list of IP addresses. For each A record, inject an A record for each item in the list: `newBase: ["1.2.3.100", "2.4.6.8.100"]` would produce 2 records for each A record.
 * For CNAMEs, the `.internal` is appended to the end of the target.
 
 `NEW_IP` works as follows:
 
-* An IP address.  Change the IP address of the A record to this IP address. If there are multiple A records at this label, only one A record is generated.
+* An IP address. Change the IP address of the A record to this IP address. If there are multiple A records at this label, only one A record is generated.
 * A list of IP addresses. Not supported.
 * For CNAMEs, the `.internal` is appended to the end of the target. (same as `NEW_BASE`)

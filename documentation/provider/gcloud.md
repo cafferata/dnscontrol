@@ -32,8 +32,8 @@ Example:
 
 **Note**:
 
-* Don't confuse the `TYPE` and `type` fields.  `TYPE` is set to `GCLOUD` and specifies which provider type to use.  `type` specifies the type of account in use.
-* The JSON object that Google sends includes many, many fields.  The `project_id`, `private_key`, and `client_email`, are the only fields that are required. The example above includes all fields.
+* Don't confuse the `TYPE` and `type` fields. `TYPE` is set to `GCLOUD` and specifies which provider type to use. `type` specifies the type of account in use.
+* The JSON object that Google sends includes many, many fields. The `project_id`, `private_key`, and `client_email`, are the only fields that are required. The example above includes all fields.
 * `name_server_set` is optional and requires special permission from your TAM at Google in order to setup (See [Name server sets](#name-server-sets) below)
 See [the Activation section](#activation) for some tips on obtaining these credentials.
 
@@ -84,8 +84,8 @@ control panel manually or via the `create-domains` command.
 
 ## Name server sets
 
-This optional feature lets you pin domains to a set of GCLOUD name servers.  The `nameServerSet` field is exposed in their API but there is
-currently no facility for creating a name server set.  You need special permission from your technical account manager at Google and they
+This optional feature lets you pin domains to a set of GCLOUD name servers. The `nameServerSet` field is exposed in their API but there is
+currently no facility for creating a name server set. You need special permission from your technical account manager at Google and they
 will enable it on your account, responding with a list of names to use in the `name_server_set` field above.
 
 > `name_server_set` only applies on `create-domains` at the moment. Additional work needs to be done to support it during `push`
@@ -113,7 +113,7 @@ D("example.tld", REG_NAMECOM, DnsProvider(DSP_GCLOUD),
 ```
 {% endcode %}
 
-> `visibility` and `networks` only applies on `create-domains` at the moment. Neither setting is enforced by the provider after a zone is created.  Additional work is required to support modifications to `networks` visibility during `push`, however the API will not permit `visibility` to be modified on an existing zone.
+> `visibility` and `networks` only applies on `create-domains` at the moment. Neither setting is enforced by the provider after a zone is created. Additional work is required to support modifications to `networks` visibility during `push`, however the API will not permit `visibility` to be modified on an existing zone.
 
 > `networks` may be specified using the network name if the VPC network exists in `project_id`
 
@@ -154,7 +154,7 @@ D("example.com", REG_NONE, DnsProvider(GCLOUD),
 
 # Debugging credentials
 
-You can test your `creds.json` entry with the command: `dnscontrol check-creds foo GCLOUD` where `foo` is the name of key used in `creds.json`.  Error messages you might see:
+You can test your `creds.json` entry with the command: `dnscontrol check-creds foo GCLOUD` where `foo` is the name of key used in `creds.json`. Error messages you might see:
 
 * `googleapi: Error 403: Permission denied on resource project REDACTED., forbidden`
   * Hint: `project_id` may be invalid.

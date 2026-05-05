@@ -4,7 +4,7 @@ These are the instructions for producing a release.
 
 GitHub Actions (GHA) will do most of the work for you. You will need to edit the draft release notes and click a button to make the release public.
 
-Please change the version number as appropriate.  Substitute (for example) `v4.2.0` any place you see `$VERSION` in this doc.
+Please change the version number as appropriate. Substitute (for example) `v4.2.0` any place you see `$VERSION` in this doc.
 
 ## Step 0. Update dependencies
 
@@ -49,11 +49,11 @@ The GHA workflow uses [GoReleaser](https://goreleaser.com/) which produces the [
 
 Release notes style guide:
 
-* Entries in the bullet list should be phrased in the positive: "Feature FOO now does BAR".  This is often the opposite of the related issue, which was probably phrased, "Feature FOO is broken because of BAR".
+* Entries in the bullet list should be phrased in the positive: "Feature FOO now does BAR". This is often the opposite of the related issue, which was probably phrased, "Feature FOO is broken because of BAR".
 * Every item should include the ID of the issue related to the change. If there was no issue, create one and close it.
 * Sort the list most important/exciting changes earlier in the list.
 * Items related to a specific provider should begin with the all-caps name of the provider, such as "ROUTE53: Added support for sandwiches (#100)"
-* The `Deprecation warnings` section should just copy from `README.md`.  If you change one, change it in the README too (you can make that change in this PR).
+* The `Deprecation warnings` section should just copy from `README.md`. If you change one, change it in the README too (you can make that change in this PR).
 
 See [https://github.com/DNSControl/dnscontrol/releases](https://github.com/DNSControl/dnscontrol/releases) for examples for recent release notes and copy that style.
 
@@ -72,7 +72,7 @@ https://github.com/DNSControl/dnscontrol/releases/tag/v$VERSION
 
 {% hint style="info" %}
 **NOTE**: You won't be able to post to the mailing list unless you are on
-it.  [Click here to join](https://groups.google.com/g/dnscontrol-discuss).
+it. [Click here to join](https://groups.google.com/g/dnscontrol-discuss).
 {% endhint %}
 
 ## Step 5. Get credit
@@ -85,7 +85,7 @@ If you are at Stack Overflow:
 
 ## Tip: How to bump the major version
 
-If you bump the major version, you need to change all the source files.  The last time this was done (v3 -> v4) these two commands were used. They're included her for reference.
+If you bump the major version, you need to change all the source files. The last time this was done (v3 -> v4) these two commands were used. They're included her for reference.
 
 ```shell
 #  Make all the changes:
@@ -101,7 +101,7 @@ find * -name \*.bak -delete
 GHA is configured to run an integration test for any provider listed in the "provider" list. However the test is skipped if the `*_DOMAIN` variable is not set. For example, the Google Cloud provider integration test is only run if `GCLOUD_DOMAIN` is set.
 
 * Q: What labels control the integration tests?
-* A: A PR only runs a "smoke test" (the first few tests).  Add the label "fulltest" to run all tests. (The daily run of integration tests on the main branch always does all test.)
+* A: A PR only runs a "smoke test" (the first few tests). Add the label "fulltest" to run all tests. (The daily run of integration tests on the main branch always does all test.)
 
 * Q: Where is the list of providers to run integration tests on?
 * A: In `.github/workflows/pr_test.yml`: (1) the "PROVIDERS" list, (2) the `integrtests-diff2` section.
@@ -117,11 +117,11 @@ GHA is configured to run an integration test for any provider listed in the "pro
 1. Edit `.github/workflows/pr_test.yml`
 2. Add the `FOO_DOMAIN` variable name of the provider to the "PROVIDERS" list.
 3. Set the `FOO_DOMAIN` variables in GHA via https://github.com/DNSControl/dnscontrol/settings/variables/actions
-4. All other variables should be stored as secrets (for consistency).  Add them to the `integration-tests` section. Set them in GHA via https://github.com/DNSControl/dnscontrol/settings/secrets/actions
+4. All other variables should be stored as secrets (for consistency). Add them to the `integration-tests` section. Set them in GHA via https://github.com/DNSControl/dnscontrol/settings/secrets/actions
 
 ### How do I add a "bring your own keys" integration test?
 
-Overview: You will fork the repo and add any secrets to your fork.  For security reasons you won't have access to the secrets from the main repository.
+Overview: You will fork the repo and add any secrets to your fork. For security reasons you won't have access to the secrets from the main repository.
 
 1. [Fork DNSControl/dnscontrol](https://github.com/DNSControl/dnscontrol/fork) in GitHub.
 

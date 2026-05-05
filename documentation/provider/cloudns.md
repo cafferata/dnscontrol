@@ -62,11 +62,11 @@ D("example.com", REG_NONE, DnsProvider(DSP_CLOUDNS),
 {% endcode %}
 
 ## Activation
-[Create Auth ID](https://www.cloudns.net/api-settings/).  Only paid account can use API
+[Create Auth ID](https://www.cloudns.net/api-settings/). Only paid account can use API
 
 ## Caveats
 ClouDNS does not allow all TTLs, only a specific subset of TTLs. By default, the following [TTLs are supported](https://www.cloudns.net/wiki/article/188/):
-- 60  (1 minute)
+- 60 (1 minute)
 - 300 (5 minutes)
 - 900 (15 minutes)
 - 1800 (30 minutes)

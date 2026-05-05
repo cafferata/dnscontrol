@@ -1,6 +1,6 @@
 # creds.json
 
-When DNSControl interacts with a provider, any API keys, credentials, or other configuration parameters required are stored in `creds.json`.   The file contains a set of key/value pairs for each configuration.  That is, since a provider can be used multiple times with different credentials, the file contains a section for each set of credentials.
+When DNSControl interacts with a provider, any API keys, credentials, or other configuration parameters required are stored in `creds.json`. The file contains a set of key/value pairs for each configuration. That is, since a provider can be used multiple times with different credentials, the file contains a section for each set of credentials.
 
 Here's a sample file:
 
@@ -40,7 +40,7 @@ Here's a sample file:
   * A missing subkey is not an error. The value is the empty string.
 * Values:
   * ...may include any JSON string value including the empty string.
-  * If a subkey starts with `$`, it is taken as an env variable.  In the above example, `$CNR_APILOGIN` would be replaced by the value of the environment variable `CNR_APILOGIN` or the empty string if no such environment variable exists.
+  * If a subkey starts with `$`, it is taken as an env variable. In the above example, `$CNR_APILOGIN` would be replaced by the value of the environment variable `CNR_APILOGIN` or the empty string if no such environment variable exists.
 
 ## New in v3.16
 
@@ -48,9 +48,9 @@ The special subkey "TYPE" is used to indicate the provider type (NONE, CLOUDFLAR
 
 Prior to [v3.16](../release/v316.md), the provider type is specified as the second argument to `NewRegistrar()` and `NewDnsProvider()` in `dnsconfig.js` or as a command-line argument in tools such as `dnscontrol get-zones`.
 
-Starting in [v3.16](../release/v316.md), `NewRegistrar()`, and `NewDnsProvider()` no longer require the provider type to be specified. It may be specified for backwards compatibility, but a warning will be generated with a suggestion of how to upgrade to the 4.0 format.  Likewise, command-line tools no longer require the provider type to be specified, but for backwards compatibility one may specify `-` since the parameter is positional.
+Starting in [v3.16](../release/v316.md), `NewRegistrar()`, and `NewDnsProvider()` no longer require the provider type to be specified. It may be specified for backwards compatibility, but a warning will be generated with a suggestion of how to upgrade to the 4.0 format. Likewise, command-line tools no longer require the provider type to be specified, but for backwards compatibility one may specify `-` since the parameter is positional.
 
-In 4.0, DNSControl will require the "TYPE" subkey in each `creds.json` entry. Command line tools will have a backwards-incompatible change to remove the provider-type as a positional argument.  Prior to 4.0, the various commands will output warnings and suggestions to avoid compatibility issues during the transition.
+In 4.0, DNSControl will require the "TYPE" subkey in each `creds.json` entry. Command line tools will have a backwards-incompatible change to remove the provider-type as a positional argument. Prior to 4.0, the various commands will output warnings and suggestions to avoid compatibility issues during the transition.
 
 ## Error messages
 
@@ -60,7 +60,7 @@ Message: `WARNING: For future compatibility, add this entry creds.json:...`
 
 Message: `WARNING: For future compatibility, update the ... entry in creds.json by adding:...`
 
-These messages indicates that this provider is not mentioned in `creds.json`.  In v4.0 all providers used in `dnsconfig.js` will require an entry in `creds.json`.
+These messages indicates that this provider is not mentioned in `creds.json`. In v4.0 all providers used in `dnsconfig.js` will require an entry in `creds.json`.
 
 For a smooth transition, please update your `creds.json` file now.
 
@@ -201,4 +201,4 @@ Do NOT store `creds.json` (or any secrets!) in a Git repository. That is not sec
 
 For example, storing the creds.json at the top of this document would be horribly insecure. Anyone with access to your Git repository *or the history* will know your apiuser is `REDACTED`. Removing secrets accidentally stored in Git is very difficult because you'll need to rewrite the repo history.
 
-A better way is to use environment variables as in the `CNR` example above.  Use secure means to distribute the names and values of the environment variables.
+A better way is to use environment variables as in the `CNR` example above. Use secure means to distribute the names and values of the environment variables.

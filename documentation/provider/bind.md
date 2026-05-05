@@ -8,8 +8,8 @@ To use this provider, add an entry to `creds.json` with `TYPE` set to `BIND`.
 
 Optional fields include:
 
-* `directory`: Location of the zone files.  Default: `zones` (in the current directory).
-* [`filenameformat`](#filenameformat): The formula used to generate the zone filenames. The default is usually sufficient.  Default: `"%c.zone"`
+* `directory`: Location of the zone files. Default: `zones` (in the current directory).
+* [`filenameformat`](#filenameformat): The formula used to generate the zone filenames. The default is usually sufficient. Default: `"%c.zone"`
 
 Example:
 
@@ -31,7 +31,7 @@ As of v4.2.0 `dnscontrol push` will create subdirectories along the path to the 
 This provider accepts some optional metadata in the `NewDnsProvider()` call.
 
 * `default_soa`: If no SOA record exists in a zone file, one will be created based on the values specified here. Use `SOA()` to update existing zone files.
-* `default_ns`: Inject these NS records into the zone.  Use this when `NS()` is insufficient.
+* `default_ns`: Inject these NS records into the zone. Use this when `NS()` is insufficient.
 
 In this example we set the default SOA settings and NS records.
 
@@ -58,14 +58,14 @@ var DSP_BIND = NewDnsProvider("bind", {
 
 # FYI: SOA Records
 
-SOA records are a bit weird in DNSControl.   Most providers auto-generate SOA records and do not permit any modifications. BIND is unique in that it requires users to manage the SOA records themselves.
+SOA records are a bit weird in DNSControl. Most providers auto-generate SOA records and do not permit any modifications. BIND is unique in that it requires users to manage the SOA records themselves.
 
-Because BIND is unique, BIND's SOA support is kind of a hack.  It leaves the SOA record alone, with 2 exceptions:
+Because BIND is unique, BIND's SOA support is kind of a hack. It leaves the SOA record alone, with 2 exceptions:
 
 1. The serial number: If something in the zone changes, the serial number is incremented (see below).
-2. Missing SOAs: If there is no SOA record in a zone (or the zone is being created for the first time), the SOA is created.  The initial values are taken from the `default_soa` settings.
+2. Missing SOAs: If there is no SOA record in a zone (or the zone is being created for the first time), the SOA is created. The initial values are taken from the `default_soa` settings.
 
-The `default_soa` values are only used when creating an SOA for the first time. The values are not used to update an SOA.  Most people edit the SOA values by manually editing the zonefile or using the `SOA()` function.
+The `default_soa` values are only used when creating an SOA for the first time. The values are not used to update an SOA. Most people edit the SOA values by manually editing the zonefile or using the `SOA()` function.
 
 # FYI: SOA serial numbers
 
@@ -114,7 +114,7 @@ Useful examples:
 
 Compatibility notes:
 
-* `%D` should not be used. It downcases the string in a way that is probably incompatible with Unicode characters.  It is retained for compatibility with pre-v4.28 releases. If your domain has capital Unicode characters, backwards compatibility is not guaranteed. Use `%r` instead.
+* `%D` should not be used. It downcases the string in a way that is probably incompatible with Unicode characters. It is retained for compatibility with pre-v4.28 releases. If your domain has capital Unicode characters, backwards compatibility is not guaranteed. Use `%r` instead.
 * `%U` relies on `%D` which is deprecated. Use `%c` instead.
 * As of v4.28 the default format string changed from `%U.zone` to `%c.zone`. This should only matter if your `D()` statements included non-ASCII (Unicode) runes that were capitalized.
 * If you are using pre-v4.28 releases the above table is slightly misleading because uppercase ASCII letters do not always work. If you are using pre-v4.28 releases, assume the above table lists `example.com` instead of `EXAMpl.com`.
@@ -127,4 +127,4 @@ The DNSControl `get-zones all` subcommand scans the directory for any files name
 dnscontrol get-zones --format=nameonly - BIND all
 ```
 
-If `filenameformat` is defined, `dnscontrol` makes a guess at which filenames are zones by reversing the logic of the format string. It doesn't try very hard to get this right, as getting it right in all situations is mathematically impossible.  Feel free to file an issue if find a situation where it doesn't work. I love a challenge!
+If `filenameformat` is defined, `dnscontrol` makes a guess at which filenames are zones by reversing the logic of the format string. It doesn't try very hard to get this right, as getting it right in all situations is mathematically impossible. Feel free to file an issue if find a situation where it doesn't work. I love a challenge!

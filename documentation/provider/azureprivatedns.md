@@ -1,6 +1,6 @@
 ## Configuration
 
-This provider is for the [Azure Private DNS Service](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview).  This provider can only manage Azure Private DNS zones and will not manage public Azure DNS zones. To use this provider, add an entry to `creds.json` with `TYPE` set to `AZURE_PRIVATE_DNS`
+This provider is for the [Azure Private DNS Service](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview). This provider can only manage Azure Private DNS zones and will not manage public Azure DNS zones. To use this provider, add an entry to `creds.json` with `TYPE` set to `AZURE_PRIVATE_DNS`
 along with the API credentials.
 
 Example:

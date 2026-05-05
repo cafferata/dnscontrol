@@ -69,7 +69,7 @@ This requires the `bash-completion` package to be installed. See [scop/bash-comp
 
 Create a directory where you'll store your configuration files. We highly recommend storing these files in a Git repo, but for simple tests anything will do.
 
-Create a subdirectory called `zones` in the same directory as the configuration files.  (`mkdir zones`).  `zones` is where the BIND provider writes the zonefiles it creates. Even if you don't use BIND for DNS service, it is useful for testing.
+Create a subdirectory called `zones` in the same directory as the configuration files. (`mkdir zones`). `zones` is where the BIND provider writes the zonefiles it creates. Even if you don't use BIND for DNS service, it is useful for testing.
 
 ## 3. Create the initial `dnsconfig.js`
 
@@ -112,11 +112,11 @@ Create a file called `creds.json` for storing provider configurations (API token
 ```
 {% endcode %}
 
-Note: Do **not** store your `creds.json` file in Git unencrypted. That is unsafe. Add `creds.json` to your `.gitignore` file as a precaution.  This file should be encrypted using something like [git-crypt](https://www.agwa.name/projects/git-crypt).
+Note: Do **not** store your `creds.json` file in Git unencrypted. That is unsafe. Add `creds.json` to your `.gitignore` file as a precaution. This file should be encrypted using something like [git-crypt](https://www.agwa.name/projects/git-crypt).
 
 There are 2 types of providers:
 
-A "Registrar" is with whom you register the domain.  Start with `NONE`, which is a provider that never talks to or updates the registrar.  You can define your registrar later when you want to use advanced features.
+A "Registrar" is with whom you register the domain. Start with `NONE`, which is a provider that never talks to or updates the registrar. You can define your registrar later when you want to use advanced features.
 
 A "DnsProvider" is the service that actually provides DNS service (port 53) and may be the same or a different registrar. Even if both your Registrar and DnsProvider are the same company, two different definitions must be included in `dnsconfig.js`.
 
@@ -143,9 +143,9 @@ The file looks like:
 ```
 {% endcode %}
 
-Ignore the `r53_accountname` section.  It is a placeholder and will be ignored. You can use it later when you define your first set of API credentials.
+Ignore the `r53_accountname` section. It is a placeholder and will be ignored. You can use it later when you define your first set of API credentials.
 
-Note that `creds.json` is a JSON file. JSON is very strict about commas and other formatting.  There are a few different ways to check for typos:
+Note that `creds.json` is a JSON file. JSON is very strict about commas and other formatting. There are a few different ways to check for typos:
 
 Python:
 
@@ -173,7 +173,7 @@ FYI: `creds.json` fields can be read from an environment variable. The field mus
 
 Before you edit the sample files, verify that the system is working.
 
-First run `dnscontrol preview` and ensure it completes without error(s).  The preview command is the "dry run" mode that shows only what changes need to be made and never makes any actual changes. It will use APIs if needed to find out what DNS entries currently exist.
+First run `dnscontrol preview` and ensure it completes without error(s). The preview command is the "dry run" mode that shows only what changes need to be made and never makes any actual changes. It will use APIs if needed to find out what DNS entries currently exist.
 
 (All output assumes the `--full` flag)
 
@@ -197,11 +197,11 @@ Done. 1 corrections.
 Next, run `dnscontrol push` to actually make the changes. In this case, the change will be to create a zone file where one didn't previously exist.
 
 {% hint style="warn" %}
-**Nervous?**  The first "push" can be nervous-making. How to migrate a zone
-safely?  It's best to loop through iterations of `preview` and editing
+**Nervous?** The first "push" can be nervous-making. How to migrate a zone
+safely? It's best to loop through iterations of `preview` and editing
 `dnsconfig.js` until no changes are listed.
 Once you see the preview is clean (or at least making the changes you desire),
-doing a `push` is safe.  (Though, as with any tool, backups are recommended. Even a screenshot of your DNS provider's web portal is better than nothing!)
+doing a `push` is safe. (Though, as with any tool, backups are recommended. Even a screenshot of your DNS provider's web portal is better than nothing!)
 {% endhint %}
 
 ```shell
@@ -242,13 +242,13 @@ MODIFY A example.com: (1.2.3.4 300) -> (10.10.10.10 300)
 Done. 1 corrections.
 ```
 
-Notice that it read the old zone file and was able to produce a "diff" between the old `A` record and the new one.  If the zonefile didn't exist, the output would look different because the zone file was being created from scratch.
+Notice that it read the old zone file and was able to produce a "diff" between the old `A` record and the new one. If the zonefile didn't exist, the output would look different because the zone file was being created from scratch.
 
 Run `dnscontrol push` to see the system generate a new zone file.
 
 Other providers use an API to do updates. In those cases the individual changes will translate into API calls that update the specific records.
 
-Take a look at the `zones/example.com.zone` file.  It should look like:
+Take a look at the `zones/example.com.zone` file. It should look like:
 
 ```text
 $TTL 300
@@ -256,21 +256,21 @@ $TTL 300
                  IN A     10.10.10.10
 ```
 
-You can change the "DEFAULT_NOT_SET" text by following the documentation for the [BIND provider](../provider/bind.md) to set the "master" and "mbox" settings.  Try that now.
+You can change the "DEFAULT_NOT_SET" text by following the documentation for the [BIND provider](../provider/bind.md) to set the "master" and "mbox" settings. Try that now.
 
 ## 7. Use your own domains
 
 Now that we know the system is working for test data, try controlling a real domain (or a test domain if you have one).
 
-Set up the provider:  Add the providers's definition to `dnsconfig.js` and list any credentials in `creds.json`.  Each provider is different. See [the provider docs](../provider/index.md) for specifics.
+Set up the provider: Add the providers's definition to `dnsconfig.js` and list any credentials in `creds.json`. Each provider is different. See [the provider docs](../provider/index.md) for specifics.
 
-Edit the domain: Add the `D()` entry for the domain, or repurpose the `example.com` domain.  Add individual `A()`, `MX()` and other records as needed.  Remember that the first parameter to `D()` is always a Registrar.
+Edit the domain: Add the `D()` entry for the domain, or repurpose the `example.com` domain. Add individual `A()`, `MX()` and other records as needed. Remember that the first parameter to `D()` is always a Registrar.
 
-Run `dnscontrol preview` to test your work. It may take a few tries to list all the DNS records that make up the domain.  When `preview` shows no changes required, then you know you are at record parity.
+Run `dnscontrol preview` to test your work. It may take a few tries to list all the DNS records that make up the domain. When `preview` shows no changes required, then you know you are at record parity.
 
 The [Migrating](migrating.md) doc has advice about converting from other systems. You can manually create the `D()` statements, or you can generate them automatically using the [dnscontrol get-zones](../commands/get-zones.md) command to import the zone from (most) providers and output it as code that can be added to `dnsconfig.js` and used with very little modification.
 
-Now you can make changes to the domain(s)  and run `dnscontrol preview`
+Now you can make changes to the domain(s) and run `dnscontrol preview`
 
 {% hint style="warn" %}
 **get-zones is not perfect** It is intended to be "a decent first draft", only

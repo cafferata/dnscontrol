@@ -10,11 +10,11 @@ parameter_types:
     targetSpec: string?
 ---
 
-`IGNORE()` makes it possible for DNSControl to share management of a domain with an external system.  The parameters of `IGNORE()` indicate which records are managed elsewhere and should not be modified or deleted.
+`IGNORE()` makes it possible for DNSControl to share management of a domain with an external system. The parameters of `IGNORE()` indicate which records are managed elsewhere and should not be modified or deleted.
 
-Use case: Suppose a domain is managed by both DNSControl and a third-party system. This creates a problem because DNSControl will try to delete records inserted by the other system.  The other system may get confused and re-insert those records.  The two systems will get into an endless update cycle where each will revert changes made by the other in an endless loop.
+Use case: Suppose a domain is managed by both DNSControl and a third-party system. This creates a problem because DNSControl will try to delete records inserted by the other system. The other system may get confused and re-insert those records. The two systems will get into an endless update cycle where each will revert changes made by the other in an endless loop.
 
-To solve this problem simply include `IGNORE()` statements that identify which records are managed elsewhere.  DNSControl will not modify or delete those records.
+To solve this problem simply include `IGNORE()` statements that identify which records are managed elsewhere. DNSControl will not modify or delete those records.
 
 Technically `IGNORE_NAME` is a promise that DNSControl will not modify or delete existing records that match particular patterns. It is like [`NO_PURGE`](../domain-modifiers/NO_PURGE.md) that matches only specific records.
 
@@ -34,21 +34,21 @@ D("example.com", REG_MY_PROVIDER, DnsProvider(DSP_MY_PROVIDER),
 ```
 {% endcode %}
 
-* `labelSpec` is a glob that matches the DNS label. For example `"foo"` or `"foo*"`.  `"*"` matches all labels, as does the empty string (`""`).
-* `typeSpec` is a comma-separated list of DNS types.  For example `"A"` matches DNS A records, `"A,CNAME"` matches both A and CNAME records. `"*"` matches any DNS type, as does the empty string (`""`).
-* `targetSpec` is a glob that matches the DNS target. For example `"foo"` or `"foo*"`.  `"*"` matches all targets, as does the empty string (`""`).
+* `labelSpec` is a glob that matches the DNS label. For example `"foo"` or `"foo*"`. `"*"` matches all labels, as does the empty string (`""`).
+* `typeSpec` is a comma-separated list of DNS types. For example `"A"` matches DNS A records, `"A,CNAME"` matches both A and CNAME records. `"*"` matches any DNS type, as does the empty string (`""`).
+* `targetSpec` is a glob that matches the DNS target. For example `"foo"` or `"foo*"`. `"*"` matches all targets, as does the empty string (`""`).
 
 `typeSpec` and `targetSpec` default to `"*"` if they are omitted.
 
 ## Globs
 
-The `labelSpec` and `targetSpec` parameters supports glob patterns in the style of the [gobwas/glob](https://github.com/gobwas/glob) library.  All of the following patterns will work:
+The `labelSpec` and `targetSpec` parameters supports glob patterns in the style of the [gobwas/glob](https://github.com/gobwas/glob) library. All of the following patterns will work:
 
 * `IGNORE("*.foo")` will ignore all records in the style of `bar.foo`, but will not ignore records using a double subdomain, such as `foo.bar.foo`.
 * `IGNORE("**.foo")` will ignore all subdomains of `foo`, including double subdomains.
 * `IGNORE("?oo")` will ignore all records of three symbols ending in `oo`, for example `foo` and `zoo`. It will not match `.`
 * `IGNORE("[abc]oo")` will ignore records `aoo`, `boo` and `coo`. `IGNORE("[a-c]oo")` is equivalent.
-* `IGNORE("[!abc]oo")` will ignore all three symbol records ending in `oo`, except for `aoo`, `boo`, `coo`.        `IGNORE("[!a-c]oo")` is equivalent.
+* `IGNORE("[!abc]oo")` will ignore all three symbol records ending in `oo`, except for `aoo`, `boo`, `coo`. `IGNORE("[!a-c]oo")` is equivalent.
 * `IGNORE("{bar,[fz]oo}")` will ignore `bar`, `foo` and `zoo`.
 * `IGNORE("\\*.foo")` will ignore the literal record `*.foo`.
 
@@ -333,11 +333,11 @@ D("example.com", REG_MY_PROVIDER, DnsProvider(DSP_MY_PROVIDER),
 ## Caveats
 
 {% hint style="warning" %}
-**WARNING**: Two systems updating the same domain is complex.  Complex things are risky. Use `IGNORE()`
+**WARNING**: Two systems updating the same domain is complex. Complex things are risky. Use `IGNORE()`
 as a last resort. Even then, test extensively.
 {% endhint %}
 
-* There is no locking.  If the external system and DNSControl make updates at the exact same time, the results are undefined.
+* There is no locking. If the external system and DNSControl make updates at the exact same time, the results are undefined.
 * `IGNORE` works fine with records inserted into a `D()` via `D_EXTEND()`. The matching is done on the resulting FQDN of the label or target.
-* `targetSpec` does not match fields other than the primary target.  For example, `MX` records have a target hostname plus a priority. There is no way to match the priority.
-* The BIND provider can not ignore records it doesn't know about.  If it does not have access to an existing zonefile, it will create a zonefile from scratch. That new zonefile will not have any external records.  It will seem like they were not ignored, but in reality BIND didn't have visibility to them so that they could be ignored.
+* `targetSpec` does not match fields other than the primary target. For example, `MX` records have a target hostname plus a priority. There is no way to match the priority.
+* The BIND provider can not ignore records it doesn't know about. If it does not have access to an existing zonefile, it will create a zonefile from scratch. That new zonefile will not have any external records. It will seem like they were not ignored, but in reality BIND didn't have visibility to them so that they could be ignored.

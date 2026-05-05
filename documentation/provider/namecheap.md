@@ -52,7 +52,7 @@ D("example.com", REG_NAMECHEAP, DnsProvider(DSP_BIND),
 ```
 {% endcode %}
 
-Namecheap provides custom redirect records URL, URL301, and FRAME.  These records can be used like any other record:
+Namecheap provides custom redirect records URL, URL301, and FRAME. These records can be used like any other record:
 
 {% code title="dnsconfig.js" %}
 ```javascript
