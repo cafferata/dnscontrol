@@ -13,7 +13,6 @@ parameter_types:
 provider: POWERDNS
 ---
 
-
 # LUA
 
 `LUA()` adds a **PowerDNS Lua record** to a domain. Use this when you want answers computed at **query time** (traffic steering, geo/ASN steering, weighted pools, health-based failover, time-based values, etc.) using the PowerDNS Authoritative Server’s built-in Lua engine.

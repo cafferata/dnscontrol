@@ -119,4 +119,3 @@ In the first example, you'll see that one variable is used to set a mode which t
 In the second example, you'll see a boolean variable is set which selects which code will run different code. While the conditional code is not isolated to the top of the file, the conditional code is placed immediately after the domain.
 
 In both examples, not setting any variables on the command line does something reasonable. If someone accidentally runs `dnscontrol push` without any variables, the behavior is correct (assuming we're not in emergency mode, which is unlikely).
-

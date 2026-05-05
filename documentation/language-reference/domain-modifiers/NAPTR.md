@@ -31,7 +31,6 @@ Subdomain of the domain (e.g. `example.com`) this entry represents.
 #### E164
 In the case of E164 (e.g. `3.2.1.5.5.5.0.0.8.1.e164.arpa.`) - where [`terminalflag`](#terminalflag) is `u` - the final digit of the zone it represents, or the zone apex record `@`. For example, the ARPA zone `3.2.1.5.5.5.0.0.8.1.e164.arpa.` represents the phone number block 001800555123*X* (or the synonymous +1800555123*X*), where *X* is the final digit of the phone number string, i.e. the [`subdomain`](#subdomain).
 
-
 ### `order`
 
 ordinal (1st, 2nd, 3rd, ...) 16 bit number (2^16 i.e. <= 65535) which determines lower entries are sent first (`1`), and  higher, last (`65535`).
@@ -50,11 +49,9 @@ One of [AaSsUuPp], where:
  * `u` (terminal lookup) indicates that [`target`](#target) is a (SIP) URN or URI
  * "" (empty string) - a non-terminal condition defined by the ENUM application ([RFC 6116](https://www.rfc-editor.org/rfc/rfc6116)) to indicate that regexp is empty and the replace field contains the FQDN of another NAPTR RR
 
-
 Mutually exclusive; more than one cannot be combined in the same record. Since there is no place for a port specification in the NAPTR record, when the `a` [`terminalflag`](#terminalflag) is used, the specified protocol must be running on its default port (Note that at least SIP URI forms allow ports to be specified).
 
 Flags called 'terminal' halt the looping rewrite algorithm of DNS.
-
 
 ### `service`
 (case insensitive)
@@ -62,7 +59,6 @@ Flags called 'terminal' halt the looping rewrite algorithm of DNS.
 *`protocol+rs`* where *`protocol`* defines the protocol used by the DDDS application. *`rs`* is the resolution service. There may be 0 or more resolution services each separated by `+`. ENUM further defines this to be a type field and allows a subtype separated by a colon (`:`).
 
 For E164, typically one of `E2U+SIP` (or `E2U+sip`) or `E2U+email`. For SIP, typically `SIPS+D2T` for TCP/TLS `sips:` URIs, or TLS `sip:` URIs, or `SIP+D2T` for TCP based SIP, or `SIP+D2U` for UDP based SIP. Note that SCTP, WS and WSS are also available.
-
 
 Valid [IANA registered services for ENUM](https://www.iana.org/assignments/enum-services/enum-services.xhtml#enum-services-1):
 ```text
@@ -138,14 +134,12 @@ U-NAPTR supported regexp fields must be of the form (from the RFC):
 # the AUS data. The result will always be URI
 ```
 
-
 ### `target`
 
 A (replacement) record for the target - format depends on [`terminalflag`](#terminalflag).
  * A [`SRV`](SRV.md), if the [`terminalflag`](#terminalflag) is `s` (syntax: *`_Service._Proto.Name`*)
  * An [`A`](A.md) or [`AAAA`](AAAA.md) if the [`terminalflag`](#terminalflag) is `a`
  * URI if the [`terminalflag`](#terminalflag) is `u`
-
 
 Not all examples are guaranteed to be standards compliant, or correct.
 
@@ -182,7 +176,6 @@ D("4.3.2.1.5.5.5.0.0.8.1.e164.arpa.", REG_MY_PROVIDER, DnsProvider(R53),
 ```
 {% endcode %}
 
-
 ### Examples for SIP:
 
 {% code title="dnsconfig.js" %}
@@ -203,7 +196,6 @@ D("example.com", REG_MY_PROVIDER, DnsProvider(DSP_MY_PROVIDER),
 ```
 {% endcode %}
 
-
 ### Other RFC based examples:
 
 {% code title="dnsconfig.js" %}
@@ -220,4 +212,3 @@ D("example.com", REG_MY_PROVIDER, DnsProvider(DSP_MY_PROVIDER),
 );
 ```
 {% endcode %}
-

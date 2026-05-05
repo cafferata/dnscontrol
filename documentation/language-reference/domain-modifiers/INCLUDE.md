@@ -8,7 +8,6 @@ parameter_types:
 
 Includes all records from a given domain
 
-
 {% code title="dnsconfig.js" %}
 ```javascript
 D("example.com!external", REG_MY_PROVIDER, DnsProvider(DSP_MY_PROVIDER),

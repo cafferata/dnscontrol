@@ -76,4 +76,3 @@ VSCode equivalent configuration is:
 
     ]
 ```
-

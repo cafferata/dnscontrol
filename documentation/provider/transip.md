@@ -36,7 +36,6 @@ Or you can choose to have an `AccessToken` as credential. These can be generated
 ```
 {% endcode %}
 
-
 ## Metadata
 
 This provider does not recognize any special metadata fields unique to TransIP.

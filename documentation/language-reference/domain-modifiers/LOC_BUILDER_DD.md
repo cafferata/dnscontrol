@@ -27,7 +27,6 @@ A helper to build [`LOC`](LOC.md) records. Supply four parameters instead of 12.
 
 Internally assumes some defaults for [`LOC`](LOC.md) records.
 
-
 The cartesian coordinates are decimal degrees, like you typically find in e.g. Google Maps.
 
 Examples.
@@ -37,7 +36,6 @@ Big Ben:
 
 The White House:
 `38.89775977858357, -77.03655125982903`
-
 
 {% code title="dnsconfig.js" %}
 ```javascript

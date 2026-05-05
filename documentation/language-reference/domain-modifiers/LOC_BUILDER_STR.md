@@ -24,11 +24,9 @@ A helper to build [`LOC`](LOC.md) records. Supply three parameters instead of 12
 
 Internally assumes some defaults for [`LOC`](LOC.md) records.
 
-
 Accepts a string and tries all `LOC_BUILDER_DM*_STR({})` methods:
  * [`LOC_BUILDER_DMS_STR({})`](LOC_BUILDER_DMS_STR.md) - accepts DMS 33°51′31″S 151°12′51″E
  * [`LOC_BUILDER_DMM_STR({})`](LOC_BUILDER_DMM_STR.md) - accepts DMM 25.24°S 153.15°E
-
 
 {% code title="dnsconfig.js" %}
 ```javascript

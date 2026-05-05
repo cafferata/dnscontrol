@@ -134,7 +134,6 @@ export UseOIDC=true
 ```
 {% endcode %}
 
-
 ## Metadata
 This provider does not recognize any special metadata fields unique to Azure DNS.
 

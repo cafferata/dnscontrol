@@ -7,7 +7,6 @@ contributed providers".
 
 Otherwise leave it unassigned until someone grabs it.
 
-
 # How bugs are classified
 
 labels:

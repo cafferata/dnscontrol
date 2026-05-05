@@ -31,7 +31,6 @@ dnscontrol preview --no-colors
 * `-debug`
   * Enable debug output.  (The `-v` alias is the original name for this flag. That alias will go away eventually.)
 
-
 * `--allow-fetch`
   * Enable the `fetch()` function in `dnsconfig.js` (or equivalent). It is disabled by default because it can be used for nefarious purposes. It is dangerous on untrusted code!  Enable it only if you trust all the people editing dnsconfig.js.
 

@@ -59,4 +59,3 @@ Step 3: Clean up
 ```shell
 rm -i $HOME/bin/dnscontrol
 ```
-

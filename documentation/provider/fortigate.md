@@ -2,7 +2,6 @@
 
 This DNS provider lets you manage DNS zones hosted on a Fortinet FortiGate device via its REST API.
 
-
 ## Supported Features
 
 - `dnscontrol get-zones` is supported. Lists all DNS zones configured on the FortiGate device.
@@ -124,7 +123,6 @@ Once you have the token, use it in your `creds.json` as shown above.
 
 - ❌ **Wildcard records (`*`) are not supported.**  
   The FortiGate DNS engine does not support wildcard entries.
-
 
 ## Development notes
 

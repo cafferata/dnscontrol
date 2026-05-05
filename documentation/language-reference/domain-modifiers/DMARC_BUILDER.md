@@ -34,7 +34,6 @@ parameter_types:
 DNSControl contains a `DMARC_BUILDER` which can be used to simply create
 DMARC policies for your domains.
 
-
 ## Example
 
 ### Simple example

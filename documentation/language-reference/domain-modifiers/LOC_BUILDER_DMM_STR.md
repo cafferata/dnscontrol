@@ -24,7 +24,6 @@ A helper to build [`LOC`](LOC.md) records. Supply three parameters instead of 12
 
 Internally assumes some defaults for [`LOC`](LOC.md) records.
 
-
 Accepts a string with decimal minutes (DMM) coordinates in the form: 25.24°S 153.15°E
 
 Note that the following are acceptable forms (symbols differ):

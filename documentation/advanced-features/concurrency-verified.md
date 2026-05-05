@@ -33,4 +33,3 @@ Most simple use-cases likely use just one copy of a given provider, managing zon
 The uses of the provider objects should never create copies; each is created by a constructor, but thereafter is a singleton per constructed provider. Thus it is safe to have synchronization objects inside the provider struct.
 
 See, for example, the `dnsimple` provider, where there is a `sync.Once` _per object_, not at a global level, so that the `.accountID` can be fetched just once per configured provider. Because `sync.Once` contains a reference to `sync.noCopy`, the `go vet` command will catch attempts to copy that object, and so will catch attempts to copy the containing `dnsimpleProvider` object.
-
