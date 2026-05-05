@@ -110,18 +110,18 @@ Once you have the token, use it in your `creds.json` as shown above.
 
 ## Caveats
 
-- ✅ **NS and MX records are supported, with limitations:**  
-  - Only apex records (hostname `"@"`) are supported.  
-  - MX records must have a valid hostname (not `"."`).  
+- ✅ **NS and MX records are supported, with limitations:**
+  - Only apex records (hostname `"@"`) are supported.
+  - MX records must have a valid hostname (not `"."`).
   - FortiGate does not enforce priority uniqueness or ordering.
 
-- ❌ **PTR records are not supported.**  
+- ❌ **PTR records are not supported.**
   FortiGate stores reverse DNS data unconventionally. PTR records are excluded to prevent inconsistencies.
 
-- ❌ **TXT records are not supported.**  
+- ❌ **TXT records are not supported.**
   The FortiGate API does not currently allow TXT records.
 
-- ❌ **Wildcard records (`*`) are not supported.**  
+- ❌ **Wildcard records (`*`) are not supported.**
   The FortiGate DNS engine does not support wildcard entries.
 
 ## Development notes

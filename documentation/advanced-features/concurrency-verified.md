@@ -2,8 +2,8 @@
 name: CONCURRENCY_VERIFIED
 ---
 
-✅  - A checkmark means "this has been tested, and will run concurrently".  
-❔  - The questionmark means "it hasn't been tested, safety unknown"  
+✅  - A checkmark means "this has been tested, and will run concurrently".
+❔  - The questionmark means "it hasn't been tested, safety unknown"
 ❌  - The red "X" means "this has been tested, and it will _not_ work concurrently".
 
 Concurrency in this context is about gathering zone data, as seen during the preview stage when fetching current data for all zones.
